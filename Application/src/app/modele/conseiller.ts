@@ -1,5 +1,5 @@
-import {Utilisateur} from './Utilisateur';
-import {Adresse} from './Adresse';
+import { Utilisateur } from './utilisateur';
+import { Adresse } from './adresse';
 
 export class Conseiller extends Utilisateur {
 

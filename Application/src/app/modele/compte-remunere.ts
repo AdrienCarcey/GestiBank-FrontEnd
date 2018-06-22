@@ -1,5 +1,5 @@
-import { Transaction } from './Transaction'
-import { Compte } from './Compte'
+import { Transaction } from './transaction'
+import { Compte } from './compte'
 
 export class CompteRemunere extends Compte {
 

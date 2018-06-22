@@ -1,4 +1,4 @@
-import {Adresse} from './Adresse';
+import { Adresse } from './adresse';
 
 export abstract class Utilisateur {
 
