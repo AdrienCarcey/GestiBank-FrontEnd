@@ -30,15 +30,15 @@ const routes: Routes = [
 				component: GestionConseillerAjouterComponent
 			},
 			{
-				path: 'conseillers/modification',
+				path: 'conseillers/modifications',
 				component: GestionConseillerModifierComponent
 			},
 			{
-				path: 'affectationsAdhesion',
+				path: 'affectations/adhesions',
 				component: GestionAffectationsAdhesionComponent
 			},
 			{
-				path: 'affectationsClients',
+				path: 'affectations/clients',
 				component: GestionAffectationsClientsComponent
 			},
 		]
