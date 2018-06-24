@@ -1,7 +1,13 @@
 <ul>
-  <li><a class="active" href="admin">Tableau de bord <img class="icon" src="../../../assets/images/dashboard.png"/></a></li>
-  <li><a href="admin/conseillers">Gestion des conseillers <img class="icon" src="../../../assets/images/gestionConseillers.png"/></a></li>
-  <li><a href="admin/affectations/adhesions">Gestion des affectations <img class="icon" src="../../../assets/images/demandesAffectationGrand.png"/></a></li>
+  <li>
+  		<a [ngClass]="{'active' : route === '/admin'}" href="admin">Tableau de bord <img class="icon" src="../../../assets/images/dashboard.png"/></a>
+  </li>
+  <li>
+  		<a [ngClass]="{'active' : route === '/admin/conseillers'}" href="admin/conseillers">Gestion des conseillers <img class="icon" src="../../../assets/images/gestionConseillers.png"/></a>
+  </li>
+  <li>
+  		<a [ngClass]="{'active' : route === '/admin/affectations/adhesions'}" href="admin/affectations/adhesions">Gestion des affectations <img class="icon" src="../../../assets/images/demandesAffectationGrand.png"/></a>
+  </li>
 </ul>
 
 
