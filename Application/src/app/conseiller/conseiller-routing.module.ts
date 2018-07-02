@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EnteteComponent } from './entete/entete.component';
-import { NavigateurComponent } from './navigateur/navigateur.component';
-import { GestionClientsListeComponent } from './gestion-clients-liste/gestion-clients-liste.component';
-import { GestionClientsConsultationComponent } from './gestion-clients-consultation/gestion-clients-consultation.component';
-import { GestionClientsModificationComponent } from './gestion-clients-modification/gestion-clients-modification.component';
-import { GestionDemandesAdhesionsComponent } from './gestion-demandes-adhesions/gestion-demandes-adhesions.component';
-import { GestionDemandesClientsComponent } from './gestion-demandes-clients/gestion-demandes-clients.component';
-import { GestionDemandesMessagesComponent } from './gestion-demandes-messages/gestion-demandes-messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConseillerComponent } from './conseiller/conseiller.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ClientsComponent } from './clients/clients.component';
+import { ClientsConsultationComponent } from './clients-consultation/clients-consultation.component';
+import { ClientsConsultationCompteComponent } from './clients-consultation-compte/clients-consultation-compte.component';
+import { ClientsModificationComponent } from './clients-modification/clients-modification.component';
+import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
+import { DemandesClientComponent } from './demandes-client/demandes-client.component';
+import { DemandesMessagesComponent } from './demandes-messages/demandes-messages.component';
 
 const routes: Routes = [
 	{
@@ -23,31 +22,75 @@ const routes: Routes = [
 			},
 			{
 				path: 'clients',
-				component: GestionClientsListeComponent
+				component: ClientsComponent
 			},
 			{
 				path: 'clients/consultation',
-				component: GestionClientsConsultationComponent
+				component: ClientsConsultationComponent
+			},
+			{
+				path: 'clients/consultation/compte',
+				component: ClientsConsultationCompteComponent
 			},
 			{
 				path: 'clients/modification',
-				component: GestionClientsModificationComponent
+				component: ClientsModificationComponent
 			},
 			{
-				path: 'demandes/adhesions',
-				component: GestionDemandesAdhesionsComponent
+				path: 'demandes/adhesion',
+				component: DemandesAdhesionComponent
 			},
 			{
-				path: 'demandes/clients',
-				component: GestionDemandesClientsComponent
+				path: 'demandes/client',
+				component: DemandesClientComponent
 			},
 			{
 				path: 'demandes/messages',
-				component: GestionDemandesMessagesComponent
-			},
+				component: DemandesMessagesComponent
+			}
 		]
 	}
 ];
+
+/*const routes: Routes = [
+	{
+		path: 'conseiller',
+		component: ConseillerComponent,
+		children: [
+			{
+				path: '',
+				component: DashboardComponent
+			},
+			{
+				path: 'clients',
+				component: ClientsComponent
+			},
+				path: 'clients/consultation',
+				component: ClientsConsultationComponent
+			},
+			},
+				path: 'clients/consultation/compte',
+				component: ClientsConsultationCompteComponent
+			},
+			},
+				path: 'clients/modification',
+				component: ClientsModificationComponent
+			},
+			},
+				path: 'demandes/adhesion',
+				component: DemandesAdhesionComponent
+			},
+			},
+				path: 'demandes/client',
+				component: DemandesClientComponent
+			},
+			},
+				path: 'demandes/messages',
+				component: DemandesMessagesComponent
+			}
+		]
+	}
+];*/
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

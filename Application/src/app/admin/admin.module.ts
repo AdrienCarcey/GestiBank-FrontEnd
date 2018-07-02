@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
+
 import { AdminComponent } from './admin/admin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { EnteteComponent } from './entete/entete.component';
 import { NavigateurComponent } from './navigateur/navigateur.component';
-import { GestionConseillerListeComponent } from './gestion-conseiller-liste/gestion-conseiller-liste.component';
-import { GestionConseillerAjouterComponent } from './gestion-conseiller-ajouter/gestion-conseiller-ajouter.component';
-import { GestionConseillerModifierComponent } from './gestion-conseiller-modifier/gestion-conseiller-modifier.component';
-import { GestionAffectationsAdhesionComponent } from './gestion-affectations-adhesion/gestion-affectations-adhesion.component';
-import { GestionAffectationsClientsComponent } from './gestion-affectations-clients/gestion-affectations-clients.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConseillersComponent } from './conseillers/conseillers.component';
+import { ConseillersConsultationComponent } from './conseillers-consultation/conseillers-consultation.component';
+import { ConseillersModificationComponent } from './conseillers-modification/conseillers-modification.component';
+import { ConseillersAjoutComponent } from './conseillers-ajout/conseillers-ajout.component';
+import { AffectationsAdhesionComponent } from './affectations-adhesion/affectations-adhesion.component';
+import { AffectationsClientComponent } from './affectations-client/affectations-client.component';
 
 @NgModule({
   imports: [
@@ -18,15 +20,16 @@ import { GestionAffectationsClientsComponent } from './gestion-affectations-clie
     AdminRoutingModule
   ],
   declarations: [
-  AdminComponent,
-   DashboardComponent,
-   EnteteComponent,
-   NavigateurComponent,
-   GestionConseillerListeComponent,
-   GestionConseillerAjouterComponent,
-   GestionConseillerModifierComponent,
-   GestionAffectationsClientsComponent,
-   GestionAffectationsAdhesionComponent
-   ]
+  	AdminComponent,
+  	EnteteComponent,
+  	NavigateurComponent,
+  	DashboardComponent,
+  	ConseillersComponent,
+  	ConseillersConsultationComponent,
+  	ConseillersModificationComponent,
+  	ConseillersAjoutComponent,
+  	AffectationsAdhesionComponent,
+  	AffectationsClientComponent
+  ]
 })
 export class AdminModule { }

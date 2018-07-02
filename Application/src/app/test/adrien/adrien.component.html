@@ -1,0 +1,26 @@
+<div>
+	<h1>Détails Client</h1>
+	<label>{{clientInterne.firstName}}</label>
+	<br>
+	<label>{{clientInterne.lastName}}</label>
+	<br>
+	<label>{{clientInterne.email}}</label>
+	<br>
+	<label>{{clientInterne.mobile}}</label>
+	<br>
+	<h3>Liste des comptes</h3>
+	<table border="1">
+		<tr>
+			<th>RIB</th>
+			<th>Description</th>
+			<th>Date de création</th>
+			<th>Solde</th>
+		</tr>
+		<tr *ngFor="let comptes of clientInterne.comptes">
+			<td>{{comptes.rib}}</td>
+			<td>{{comptes.description}}</td>
+			<td>{{comptes.dateCreation}}</td>
+			<td>{{comptes.solde}}</td>
+		</tr>
+	</table>
+</div>

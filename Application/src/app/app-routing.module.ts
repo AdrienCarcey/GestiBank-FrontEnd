@@ -5,6 +5,7 @@ import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
 import { ConseillerModule } from './conseiller/conseiller.module';
 import { PublicModule } from './public/public.module';
+import { TestModule } from './test/test.module';
 
 const routes: Routes = [
 	{

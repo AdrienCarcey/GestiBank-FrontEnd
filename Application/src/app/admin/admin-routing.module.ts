@@ -3,14 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { EnteteComponent } from './entete/entete.component';
-import { NavigateurComponent } from './navigateur/navigateur.component';
-import { GestionConseillerListeComponent } from './gestion-conseiller-liste/gestion-conseiller-liste.component';
-import { GestionConseillerAjouterComponent } from './gestion-conseiller-ajouter/gestion-conseiller-ajouter.component';
-import { GestionConseillerModifierComponent } from './gestion-conseiller-modifier/gestion-conseiller-modifier.component';
-import { GestionAffectationsAdhesionComponent } from './gestion-affectations-adhesion/gestion-affectations-adhesion.component';
-import { GestionAffectationsClientsComponent } from './gestion-affectations-clients/gestion-affectations-clients.component';
-
+import { ConseillersComponent } from './conseillers/conseillers.component';
+import { ConseillersConsultationComponent } from './conseillers-consultation/conseillers-consultation.component';
+import { ConseillersModificationComponent } from './conseillers-modification/conseillers-modification.component';
+import { ConseillersAjoutComponent } from './conseillers-ajout/conseillers-ajout.component';
+import { AffectationsAdhesionComponent } from './affectations-adhesion/affectations-adhesion.component';
+import { AffectationsClientComponent } from './affectations-client/affectations-client.component';
 
 const routes: Routes = [
 	{
@@ -23,28 +21,31 @@ const routes: Routes = [
 			},
 			{
 				path: 'conseillers',
-				component: GestionConseillerListeComponent
+				component: ConseillersComponent
+			},
+			{
+				path: 'conseillers/consultation',
+				component: ConseillersConsultationComponent
+			},
+			{
+				path: 'conseillers/modification',
+				component: ConseillersModificationComponent
 			},
 			{
 				path: 'conseillers/ajout',
-				component: GestionConseillerAjouterComponent
+				component: ConseillersAjoutComponent
 			},
 			{
-				path: 'conseillers/modifications',
-				component: GestionConseillerModifierComponent
+				path: 'affectations/adhesion',
+				component: AffectationsAdhesionComponent
 			},
 			{
-				path: 'affectations/adhesions',
-				component: GestionAffectationsAdhesionComponent
-			},
-			{
-				path: 'affectations/clients',
-				component: GestionAffectationsClientsComponent
-			},
+				path: 'affectations/client',
+				component: AffectationsClientComponent
+			}
 		]
 	}
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

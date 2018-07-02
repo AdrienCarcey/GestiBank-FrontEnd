@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EnteteComponent } from './entete/entete.component';
-import { GestionDemandeComponent } from './gestion-demande/gestion-demande.component';
-import { GestionConsulterComponent } from './gestion-consulter/gestion-consulter.component';
-import { GestionCompteComponent } from './gestion-compte/gestion-compte.component';
 import { ClientComponent } from './client/client.component';
-import { NavigateurComponent } from './navigateur/navigateur.component';
-import { GestionAjoutCompteComponent } from './gestion-ajout-compte/gestion-ajout-compte.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { InformationsInfopersoComponent } from './informations-infoperso/informations-infoperso.component';
+import { InformationsCompteComponent } from './informations-compte/informations-compte.component';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { GestionVirementComponent } from './gestion-virement/gestion-virement.component';
+import { GestionVirementConfirmationComponent } from './gestion-virement-confirmation/gestion-virement-confirmation.component';
+import { DemandesComptebancaireComponent } from './demandes-comptebancaire/demandes-comptebancaire.component';
+import { DemandesDocumentbancaireComponent } from './demandes-documentbancaire/demandes-documentbancaire.component';
+import { DemandesInfopersoComponent } from './demandes-infoperso/demandes-infoperso.component';
+import { DemandesCompteComponent } from './demandes-compte/demandes-compte.component';
+import { DemandesConfirmationComponent } from './demandes-confirmation/demandes-confirmation.component';
+import { ContactFormulaireComponent } from './contact-formulaire/contact-formulaire.component';
+import { ContactConfirmationComponent } from './contact-confirmation/contact-confirmation.component';
 
 const routes: Routes = [
-{
-path: 'client',
+	{
+		path: 'client',
 		component: ClientComponent,
 		children: [
 			{
@@ -21,25 +26,55 @@ path: 'client',
 				component: DashboardComponent
 			},
 			{
-				path: 'gestion/compte',
-				component: GestionCompteComponent
+				path: 'informations/infoperso',
+				component: InformationsInfopersoComponent
+			},
+			{
+				path: 'informations/compte',
+				component: InformationsCompteComponent
 			},
 			{
 				path: 'consultation',
-				component: GestionConsulterComponent
+				component: ConsultationComponent
 			},
 			{
-				path: 'gestion/demande',
-				component: GestionDemandeComponent
+				path: 'gestion/virement',
+				component: GestionVirementComponent
 			},
 			{
-				path: 'demandes/ajout/compte',
-				component: GestionAjoutCompteComponent
+				path: 'gestion/virement/confirmation',
+				component: GestionVirementConfirmationComponent
 			},
-			
+			{
+				path: 'demandes/comptebancaire',
+				component: DemandesComptebancaireComponent
+			},
+			{
+				path: 'demandes/documentbancaire',
+				component: DemandesDocumentbancaireComponent
+			},
+			{
+				path: 'demandes/infoperso',
+				component: DemandesInfopersoComponent
+			},
+			{
+				path: 'demandes/compte',
+				component: DemandesCompteComponent
+			},
+			{
+				path: 'demandes/confirmation',
+				component: DemandesConfirmationComponent
+			},
+			{
+				path: 'contact/formulaire',
+				component: ContactFormulaireComponent
+			},
+			{
+				path: 'contact/confirmation',
+				component: ContactConfirmationComponent
+			}
 		]
 	}
-
 ];
 
 @NgModule({
