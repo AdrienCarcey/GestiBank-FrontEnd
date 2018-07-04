@@ -1,11 +1,11 @@
-import { Compte } from "./compte";
+import { CompteTest } from "./compteTest";
 
-export class Client {
+export class ClientTest {
 	id: number;
 	firstName: string;
 	lastName: string;
 	email: string;
 	mobil: string;
 	dateOfBirth: Date;
-	comptes: Compte[];
+	comptes: CompteTest[];
 }

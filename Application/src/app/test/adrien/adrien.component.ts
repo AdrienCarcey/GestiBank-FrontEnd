@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Client } from "../../modeles/client";
-import { ClientService } from "../../services/client.service";
+import { ClientTest } from "../../modeles/clientTest";
+import { ClientTestService } from "../../services/clientTest.service";
 
 @Component({
   selector: 'app-adrien',
   templateUrl: './adrien.component.html',
   styleUrls: ['./adrien.component.css'],
-  providers: [ClientService]
+  providers: [ClientTestService]
 })
 
 export class AdrienComponent implements OnInit {
-	clientInterne: Client;
+	clientTestInterne: ClientTest;
 	
-	constructor(private clientService: ClientService) {}
+	constructor(private clientTestService: ClientTestService) {}
 
 	ngOnInit() {
-		this.clientService.findClientById(20).subscribe(
-  			clientReponse => {
-  				this.clientInterne = clientReponse;
+		this.clientTestService.findClientById(2).subscribe(
+  			clientTestReponse => {
+  				this.clientTestInterne = clientTestReponse;
   			},
   			error => {
   				console.log(error);

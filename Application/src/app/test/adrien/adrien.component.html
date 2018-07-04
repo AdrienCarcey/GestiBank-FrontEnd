@@ -1,12 +1,14 @@
 <div>
 	<h1>Détails Client</h1>
-	<label>{{clientInterne.firstName}}</label>
+	<label>{{clientTestInterne.id}}</label>
 	<br>
-	<label>{{clientInterne.lastName}}</label>
+	<label>{{clientTestInterne.firstName}}</label>
 	<br>
-	<label>{{clientInterne.email}}</label>
+	<label>{{clientTestInterne.lastName}}</label>
 	<br>
-	<label>{{clientInterne.mobile}}</label>
+	<label>{{clientTestInterne.email}}</label>
+	<br>
+	<label>{{clientTestInterne.mobile}}</label>
 	<br>
 	<h3>Liste des comptes</h3>
 	<table border="1">
@@ -16,7 +18,7 @@
 			<th>Date de création</th>
 			<th>Solde</th>
 		</tr>
-		<tr *ngFor="let comptes of clientInterne.comptes">
+		<tr *ngFor="let comptes of clientTestInterne.comptes">
 			<td>{{comptes.rib}}</td>
 			<td>{{comptes.description}}</td>
 			<td>{{comptes.dateCreation}}</td>
