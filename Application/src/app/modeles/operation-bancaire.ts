@@ -5,6 +5,4 @@ export abstract class OperationBancaire {
 	montantOperation: number;
 	dateOperation: Date;
 
-	constructor(){}
-
 }
