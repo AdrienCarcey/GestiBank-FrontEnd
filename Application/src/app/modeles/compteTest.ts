@@ -1,6 +1,8 @@
 export class CompteTest {
-	rib: number;
+	idCompte: number;
 	description: string;
 	dateCreation: string;
 	solde: number;
+
+	constructor(){}
 }

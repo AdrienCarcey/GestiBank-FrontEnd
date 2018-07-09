@@ -1,28 +1,44 @@
 <div>
-	<h1>Détails Client</h1>
-	<label>{{clientTestInterne.id}}</label>
-	<br>
-	<label>{{clientTestInterne.firstName}}</label>
-	<br>
-	<label>{{clientTestInterne.lastName}}</label>
-	<br>
-	<label>{{clientTestInterne.email}}</label>
-	<br>
-	<label>{{clientTestInterne.mobile}}</label>
+	<h1>Liste des clients</h1>
+	<table border="1">
+		<tr>
+			<th>IdClient</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Date of Birth</th>
+			<th>Email</th>
+			<th>Mobile</th>
+			<th>Actions</th>
+		</tr>
+		<tr *ngFor="let client of clientsTestInterne">
+			<td>{{client.idClient}}</td>
+			<td>{{client.firstName}}</td>
+			<td>{{client.lastName}}</td>
+			<td>{{client.dateOfBirth}}</td>
+			<td>{{client.email}}</td>
+			<td>{{client.mobile}}</td>
+			<td>
+				<button (click)="findClient(client.idClient)">Afficher comptes</button>
+				<button (click)="deleteClient(client.idClient)">Supprimer client</button>
+			</td>
+		</tr>
+	</table>
 	<br>
 	<h3>Liste des comptes</h3>
 	<table border="1">
 		<tr>
-			<th>RIB</th>
+			<th>IdCompte</th>
 			<th>Description</th>
 			<th>Date de création</th>
 			<th>Solde</th>
 		</tr>
 		<tr *ngFor="let comptes of clientTestInterne.comptes">
-			<td>{{comptes.rib}}</td>
+			<td>{{comptes.idCompte}}</td>
 			<td>{{comptes.description}}</td>
 			<td>{{comptes.dateCreation}}</td>
 			<td>{{comptes.solde}}</td>
 		</tr>
 	</table>
+	<br>
+	<button (click)="createClient()">Ajouter client</button>
 </div>

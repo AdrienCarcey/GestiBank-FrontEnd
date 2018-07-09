@@ -11,8 +11,32 @@ export class ClientTestService {
 
 	constructor(private http: Http) {}
 
+	findAllClients(): Observable<ClientTest[]> {
+		return this.http.get(this.getClientTestUrl)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
 	findClientById(id: number): Observable<ClientTest> {
 		return this.http.get(this.getClientTestUrl+"/"+id)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	createClient(clientTest: ClientTest): Observable<boolean> {
+		return this.http.post(this.getClientTestUrl, clientTest)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	deleteClientById(id: number): Observable<boolean> {
+		return this.http.delete(this.getClientTestUrl+"/"+id)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))

@@ -1,11 +1,14 @@
 import { CompteTest } from "./compteTest";
 
 export class ClientTest {
-	id: number;
+	idClient: number;
 	firstName: string;
 	lastName: string;
 	email: string;
-	mobil: string;
+	mobile: string;
 	dateOfBirth: Date;
 	comptes: CompteTest[];
+
+	constructor(){}
 }
+
