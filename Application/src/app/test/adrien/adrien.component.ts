@@ -76,4 +76,29 @@ export class AdrienComponent implements OnInit {
         }
       );
   }
+
+  updateClient() {
+    var compte = new CompteTest();
+    compte.idCompte = 1;
+    compte.description = "CCP";
+    compte.dateCreation = null;
+    compte.solde = 10000;
+    var client = new ClientTest();
+    client.idClient = 1;
+    client.firstName = "Adrien";
+    client.lastName = "Carcey";
+    client.email = "adrien.carcey@hotmail.fr";
+    client.mobile = "06-06-06-06-06";
+    client.dateOfBirth = null;
+    client.comptes = [compte];
+
+    this.clientTestService.updateClient(1, client).subscribe(
+       updateResponse => {
+          this.updateInterne = updateResponse;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
 }
