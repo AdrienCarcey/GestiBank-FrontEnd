@@ -12,7 +12,7 @@ import { ClientTestService } from "../../services/clientTest.service";
 })
 
 export class AdrienComponent implements OnInit {
-	clientsTestInterne: ClientTest[];
+	clientsTestInterne: Array<ClientTest>;
   clientTestInterne: ClientTest = new ClientTest();
   deleteInterne: boolean;
   createInterne: boolean;
@@ -47,6 +47,7 @@ export class AdrienComponent implements OnInit {
     compte.description = "CCP";
     compte.dateCreation = null;
     compte.solde = 10000;
+   
     var client = new ClientTest();
     client.firstName = "Sacha";
     client.lastName = "Lis";
@@ -64,6 +65,8 @@ export class AdrienComponent implements OnInit {
           console.log(error);
         }
       );
+
+    window.location.reload();
   }
 
   deleteClient(id: number) {
@@ -75,6 +78,8 @@ export class AdrienComponent implements OnInit {
           console.log(error);
         }
       );
+
+    window.location.reload();
   }
 
   updateClient() {
@@ -83,6 +88,7 @@ export class AdrienComponent implements OnInit {
     compte.description = "CCP";
     compte.dateCreation = null;
     compte.solde = 10000;
+    
     var client = new ClientTest();
     client.idClient = 1;
     client.firstName = "Adrien";
@@ -100,5 +106,7 @@ export class AdrienComponent implements OnInit {
           console.log(error);
         }
       );
+
+     window.location.reload();
   }
 }
