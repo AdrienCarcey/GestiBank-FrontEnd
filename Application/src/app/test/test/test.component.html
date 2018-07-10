@@ -1,6 +1,17 @@
-<p>
-  test works!
-</p>
-<app-entete></app-entete>
-<app-navigateur></app-navigateur>
-<router-outlet></router-outlet>
+
+<header class="container-fluid">
+	<app-entete></app-entete>
+</header>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-md-2 sidenav">
+		<app-navigateur></app-navigateur>
+    </div>
+
+    <div class="col-md-10 main">
+		<router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+

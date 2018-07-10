@@ -6,6 +6,9 @@ import { AdrienComponent } from './adrien/adrien.component';
 import { AymenComponent } from './aymen/aymen.component';
 import { ClaireComponent } from './claire/claire.component';
 import { MatthieuComponent } from './matthieu/matthieu.component';
+import { FormulaireComponent } from './formulaire/formulaire.component';
+import { TableauComponent } from './tableau/tableau.component';
+import { OngletComponent } from './onglet/onglet.component';
 
 const routes: Routes = [
 	{
@@ -27,6 +30,18 @@ const routes: Routes = [
 			{
 				path: 'matthieu',
 				component: MatthieuComponent
+			},
+			{
+				path: 'formulaire',
+				component: FormulaireComponent
+			},
+			{
+				path: 'tableau',
+				component: TableauComponent
+			},
+			{
+				path: 'onglet',
+				component: OngletComponent
 			}
 		]
 	}
