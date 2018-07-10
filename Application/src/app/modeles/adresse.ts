@@ -1,5 +1,6 @@
 export class Adresse {
 
+	//Attributes
 	idAdresse: number;
 	numeroVoie: number;
 	libelleVoie: String;
@@ -8,6 +9,6 @@ export class Adresse {
 	ville: String;
 	pays: String;
 
+	//Constructors
 	constructor(){}
-
 }
