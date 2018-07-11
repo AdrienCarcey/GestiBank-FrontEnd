@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 
 import { ClientTest } from "../modeles/clientTest";
+import { CompteTest } from "../modeles/compteTest";
 
 @Injectable()
 export class ClientTestService {
@@ -45,6 +46,22 @@ export class ClientTestService {
 
 	updateClient(id: number, clientTest: ClientTest): Observable<boolean> {
 		return this.http.put(this.getClientTestUrl+"/"+id, clientTest)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	createCompte(idClient:number, compteTest: CompteTest): Observable<boolean> {
+		return this.http.post(this.getClientTestUrl+"/compte"+"/"+idClient, compteTest)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	deleteCompteById(idCompte: number): Observable<boolean> {
+		return this.http.delete(this.getClientTestUrl+"/compte"+"/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
