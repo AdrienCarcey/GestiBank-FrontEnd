@@ -24,10 +24,6 @@ const routes: Routes = [
 				component: AymenComponent
 			},
 			{
-				path: 'claire',
-				component: ClaireComponent
-			},
-			{
 				path: 'matthieu',
 				component: MatthieuComponent
 			},
@@ -44,6 +40,10 @@ const routes: Routes = [
 				component: OngletComponent
 			}
 		]
+	},
+	{
+		path: 'claire',
+		component: ClaireComponent
 	}
 ];
 
