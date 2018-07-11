@@ -1,5 +1,5 @@
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
- .row.content {height: 800px}
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {height: 800px}
     
 /* Set gray background color and 100% height */
 .sidenav {
@@ -11,7 +11,6 @@
 .main {
     background-color: #e9e9e8;
     height: 100%;
-
 }
 
 /* Set black background color, white text and some padding */
@@ -30,7 +29,6 @@ header {
   }
   .row.content {height: auto;} 
 }
-
 
 /* Style des formulaires */
 .formulaire{

@@ -1,16 +1,19 @@
-<div>
+<div class="container">
 	<h1>Liste des clients</h1>
-	<table border="1">
+	<div class="table-responsive">
+	<form class="form-group" [formGroup]="clientForm">
+	<table class="table table-striped table-bordered table-sm">
 		<tr>
-			<th>IdClient</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Date of Birth</th>
-			<th>Email</th>
-			<th>Mobile</th>
-			<th>Actions</th>
+			<th style="width: 5%;">IdClient</th>
+			<th style="width: 10%;">First Name</th>
+			<th style="width: 10%;">Last Name</th>
+			<th style="width: 15%;">Date of Birth</th>
+			<th style="width: 25%;">Email</th>
+			<th style="width: 15%;">Mobile</th>
+			<th style="width: 20%;">Actions</th>
 		</tr>
-		<tr *ngFor="let client of clientsTestInterne">
+		<ng-container *ngFor="let client of clientsTestInterne">
+		<tr>
 			<td>{{client.idClient}}</td>
 			<td>{{client.firstName}}</td>
 			<td>{{client.lastName}}</td>
@@ -18,28 +21,70 @@
 			<td>{{client.email}}</td>
 			<td>{{client.mobile}}</td>
 			<td>
-				<button (click)="findClient(client.idClient)">Afficher comptes</button>
-				<button (click)="deleteClient(client.idClient)">Supprimer client</button>
+				<button class="btn btn-primary" (click)="findClient(client.idClient)">Details</button>
+				<button class="btn btn-danger" (click)="deleteClient(client.idClient)">Supprimer</button>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input class="form-control" type="text" formControlName="updateFirstName" value={{client.firstName}}></td>
+			<td><input class="form-control" type="text" formControlName="updateLastName" value={{client.lastName}}></td>
+			<td><input class="form-control" type="text" formControlName="updateDateOfBirth" value={{client.dateOfBirth}}></td>
+			<td><input class="form-control" type="text" formControlName="updateEmail" value={{client.email}}></td>
+			<td><input class="form-control" type="text" formControlName="updateMobile" value={{client.mobile}}></td>
+			<td>
+				<button class="btn btn-warning" (click)="updateClient(client.idClient)">Modifier</button>
+			</td>
+		</tr>
+		</ng-container>
+		<tr>
+			<td></td>
+			<td><input class="form-control" type="text" formControlName="createFirstName"></td>
+			<td><input class="form-control" type="text" formControlName="createLastName"></td>
+			<td><input class="form-control" type="text" formControlName="createDateOfBirth"></td>
+			<td><input class="form-control" type="text" formControlName="createEmail"></td>
+			<td><input class="form-control" type="text" formControlName="createMobile"></td>
+			<td>
+				<button class="btn btn-success" (click)="createClient()">Ajouter client</button>
 			</td>
 		</tr>
 	</table>
+	</form>
+	</div>
 	<br>
 	<h3>Liste des comptes</h3>
-	<table border="1">
+	<div class="table-responsive" style="width: 70%;">
+	<form class="form-group" [formGroup]="compteForm">
+	<table class="table table-striped table-bordered table-sm">
 		<tr>
-			<th>IdCompte</th>
-			<th>Description</th>
-			<th>Date de création</th>
-			<th>Solde</th>
+			<th style="width: 5%;">IdClient</th>
+			<th style="width: 5%;">IdCompte</th>
+			<th style="width: 10%;">Description</th>
+			<th style="width: 20%;">Date de création</th>
+			<th style="width: 10%;">Solde</th>
+			<th style="width: 20%;">Actions</th>
 		</tr>
 		<tr *ngFor="let comptes of clientTestInterne.comptes">
+			<td>{{clientTestInterne.idClient}}</td>
 			<td>{{comptes.idCompte}}</td>
 			<td>{{comptes.description}}</td>
 			<td>{{comptes.dateCreation}}</td>
 			<td>{{comptes.solde}}</td>
+			<td>
+				<button class="btn btn-danger" (click)="deleteCompte(comptes.idCompte)">Supprimer</button>
+			</td>
+		</tr>
+		<tr>
+			<td><input class="form-control" type="text" formControlName="createIdClient"></td>
+			<td></td>
+			<td><input class="form-control" type="text" formControlName="createDescription"></td>
+			<td><input class="form-control" type="text" formControlName="createDateCreation"></td>
+			<td><input class="form-control" type="text" formControlName="createSolde"></td>
+			<td>
+				<button class="btn btn-success" (click)="createCompte()">Ajouter compte</button>
+			</td>
 		</tr>
 	</table>
-	<br>
-	<button (click)="createClient()">Ajouter client</button>
-	<button (click)="updateClient()">Modifier client</button>
+	</form>
+	</div>
 </div>

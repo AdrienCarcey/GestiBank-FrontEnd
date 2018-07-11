@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from "@angular/http";
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { TestRoutingModule } from './test-routing.module';
 
@@ -19,6 +20,8 @@ import { OngletComponent } from './onglet/onglet.component';
   imports: [
     CommonModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     TestRoutingModule
   ],
   declarations: [

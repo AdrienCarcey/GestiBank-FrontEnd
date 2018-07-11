@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, NgControl } from '@angular/forms';
 
 import { ClientTest } from "../../modeles/clientTest";
 import { CompteTest } from "../../modeles/compteTest";
@@ -17,11 +18,32 @@ export class AdrienComponent implements OnInit {
   deleteInterne: boolean;
   createInterne: boolean;
   updateInterne: boolean;
+
+  clientForm = new FormGroup ({
+    updateFirstName: new FormControl(),
+    updateLastName: new FormControl(),
+    updateDateOfBirth: new FormControl(),
+    updateEmail: new FormControl(),
+    updateMobile: new FormControl(),
+
+    createFirstName: new FormControl(),
+    createLastName: new FormControl(),
+    createDateOfBirth: new FormControl(),
+    createEmail: new FormControl(),
+    createMobile: new FormControl()
+  });
+
+  compteForm = new FormGroup ({
+    createIdClient: new FormControl(),
+    createDescription: new FormControl(),
+    createDateCreation: new FormControl(),
+    createSolde: new FormControl()
+  });
 	
 	constructor(private clientTestService: ClientTestService) {}
 
 	ngOnInit() {
-		this.clientTestService.findAllClients().subscribe(
+    this.clientTestService.findAllClients().subscribe(
         clientsTestResponse => {
           this.clientsTestInterne = clientsTestResponse;
         },
@@ -43,18 +65,12 @@ export class AdrienComponent implements OnInit {
   }
 
   createClient() {
-    var compte = new CompteTest();
-    compte.description = "CCP";
-    compte.dateCreation = null;
-    compte.solde = 10000;
-   
-    var client = new ClientTest();
-    client.firstName = "Sacha";
-    client.lastName = "Lis";
-    client.email = "sacha.lis@hotmail.fr";
-    client.mobile = "07-07-07-07-07";
+    let client = new ClientTest();
+    client.firstName = this.clientForm.controls['createFirstName'].value;
+    client.lastName = this.clientForm.controls['createLastName'].value;
     client.dateOfBirth = null;
-    client.comptes = [compte];
+    client.email = this.clientForm.controls['createEmail'].value;
+    client.mobile = this.clientForm.controls['createMobile'].value;
 
 
     this.clientTestService.createClient(client).subscribe(
@@ -82,23 +98,22 @@ export class AdrienComponent implements OnInit {
     window.location.reload();
   }
 
-  updateClient() {
-    var compte = new CompteTest();
-    compte.idCompte = 1;
+  updateClient(id: number) {
+    let compte = new CompteTest();
     compte.description = "CCP";
     compte.dateCreation = null;
     compte.solde = 10000;
-    
-    var client = new ClientTest();
-    client.idClient = 1;
-    client.firstName = "Adrien";
-    client.lastName = "Carcey";
-    client.email = "adrien.carcey@hotmail.fr";
-    client.mobile = "06-06-06-06-06";
+   
+    let client = new ClientTest();
+    client.idClient = id;
+    client.firstName = this.clientForm.controls['updateFirstName'].value;
+    client.lastName = this.clientForm.controls['updateLastName'].value;
     client.dateOfBirth = null;
+    client.email = this.clientForm.controls['updateEmail'].value;
+    client.mobile = this.clientForm.controls['updateMobile'].value;
     client.comptes = [compte];
 
-    this.clientTestService.updateClient(1, client).subscribe(
+    this.clientTestService.updateClient(id, client).subscribe(
        updateResponse => {
           this.updateInterne = updateResponse;
         },
@@ -108,5 +123,13 @@ export class AdrienComponent implements OnInit {
       );
 
      window.location.reload();
+  }
+
+  deleteCompte(id: number) {
+    window.location.reload();
+  }
+
+  createCompte() {
+    window.location.reload();
   }
 }
