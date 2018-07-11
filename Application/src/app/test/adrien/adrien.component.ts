@@ -22,13 +22,11 @@ export class AdrienComponent implements OnInit {
   clientForm = new FormGroup ({
     updateFirstName: new FormControl(),
     updateLastName: new FormControl(),
-    updateDateOfBirth: new FormControl(),
     updateEmail: new FormControl(),
     updateMobile: new FormControl(),
 
     createFirstName: new FormControl(),
     createLastName: new FormControl(),
-    createDateOfBirth: new FormControl(),
     createEmail: new FormControl(),
     createMobile: new FormControl()
   });
@@ -36,7 +34,6 @@ export class AdrienComponent implements OnInit {
   compteForm = new FormGroup ({
     createIdClient: new FormControl(),
     createDescription: new FormControl(),
-    createDateCreation: new FormControl(),
     createSolde: new FormControl()
   });
 	
@@ -68,10 +65,9 @@ export class AdrienComponent implements OnInit {
     let client = new ClientTest();
     client.firstName = this.clientForm.controls['createFirstName'].value;
     client.lastName = this.clientForm.controls['createLastName'].value;
-    client.dateOfBirth = null;
     client.email = this.clientForm.controls['createEmail'].value;
     client.mobile = this.clientForm.controls['createMobile'].value;
-
+    client.comptes = Array<CompteTest>;
 
     this.clientTestService.createClient(client).subscribe(
         createResponse => {
@@ -99,19 +95,11 @@ export class AdrienComponent implements OnInit {
   }
 
   updateClient(id: number) {
-    let compte = new CompteTest();
-    compte.description = "CCP";
-    compte.dateCreation = null;
-    compte.solde = 10000;
-   
     let client = new ClientTest();
-    client.idClient = id;
     client.firstName = this.clientForm.controls['updateFirstName'].value;
     client.lastName = this.clientForm.controls['updateLastName'].value;
-    client.dateOfBirth = null;
     client.email = this.clientForm.controls['updateEmail'].value;
     client.mobile = this.clientForm.controls['updateMobile'].value;
-    client.comptes = [compte];
 
     this.clientTestService.updateClient(id, client).subscribe(
        updateResponse => {
