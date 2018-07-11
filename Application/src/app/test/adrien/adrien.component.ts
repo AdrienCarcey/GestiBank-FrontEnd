@@ -13,11 +13,13 @@ import { ClientTestService } from "../../services/clientTest.service";
 })
 
 export class AdrienComponent implements OnInit {
-	clientsTestInterne: Array<ClientTest>;
-  clientTestInterne: ClientTest = new ClientTest();
-  deleteInterne: boolean;
-  createInterne: boolean;
-  updateInterne: boolean;
+	clientsInterne: Array<ClientTest>;
+  clientInterne: ClientTest = new ClientTest();
+  createClientInterne: boolean;
+  deleteClientInterne: boolean;
+  updateClientInterne: boolean
+  createCompteInterne: boolean;
+  deleteCompteInterne: boolean;
 
   clientForm = new FormGroup ({
     updateFirstName: new FormControl(),
@@ -41,8 +43,8 @@ export class AdrienComponent implements OnInit {
 
 	ngOnInit() {
     this.clientTestService.findAllClients().subscribe(
-        clientsTestResponse => {
-          this.clientsTestInterne = clientsTestResponse;
+        clientsResponse => {
+          this.clientsInterne = clientsResponse;
         },
         error => {
           console.log(error);
@@ -50,10 +52,10 @@ export class AdrienComponent implements OnInit {
       );
 	}
 
-  findClient(id: number) {
-    this.clientTestService.findClientById(id).subscribe(
-        clientTestResponse => {
-          this.clientTestInterne = clientTestResponse;
+  findClient(idClient: number) {
+    this.clientTestService.findClientById(idClient).subscribe(
+        clientResponse => {
+          this.clientInterne = clientResponse;
         },
         error => {
           console.log(error);
@@ -67,11 +69,11 @@ export class AdrienComponent implements OnInit {
     client.lastName = this.clientForm.controls['createLastName'].value;
     client.email = this.clientForm.controls['createEmail'].value;
     client.mobile = this.clientForm.controls['createMobile'].value;
-    client.comptes = Array<CompteTest>;
+    client.comptes = new Array<CompteTest>();
 
     this.clientTestService.createClient(client).subscribe(
         createResponse => {
-          this.createInterne = createResponse;
+          this.createClientInterne = createResponse;
         },
         error => {
           console.log(error);
@@ -81,10 +83,10 @@ export class AdrienComponent implements OnInit {
     window.location.reload();
   }
 
-  deleteClient(id: number) {
-    this.clientTestService.deleteClientById(id).subscribe(
+  deleteClient(idClient: number) {
+    this.clientTestService.deleteClientById(idClient).subscribe(
         deleteResponse => {
-          this.deleteInterne = deleteResponse;
+          this.deleteClientInterne = deleteResponse;
         },
         error => {
           console.log(error);
@@ -94,16 +96,16 @@ export class AdrienComponent implements OnInit {
     window.location.reload();
   }
 
-  updateClient(id: number) {
+  updateClient(idClient: number) {
     let client = new ClientTest();
     client.firstName = this.clientForm.controls['updateFirstName'].value;
     client.lastName = this.clientForm.controls['updateLastName'].value;
     client.email = this.clientForm.controls['updateEmail'].value;
     client.mobile = this.clientForm.controls['updateMobile'].value;
 
-    this.clientTestService.updateClient(id, client).subscribe(
+    this.clientTestService.updateClient(idClient, client).subscribe(
        updateResponse => {
-          this.updateInterne = updateResponse;
+          this.updateClientInterne = updateResponse;
         },
         error => {
           console.log(error);
@@ -113,11 +115,36 @@ export class AdrienComponent implements OnInit {
      window.location.reload();
   }
 
-  deleteCompte(id: number) {
+  createCompte() {
+    let idClient: number;
+    idClient = this.compteForm.controls['createIdClient'].value;
+
+    let compte = new CompteTest();
+    compte.description = this.compteForm.controls['createDescription'].value;
+    compte.solde = this.compteForm.controls['createSolde'].value;
+
+    this.clientTestService.createCompte(idClient, compte).subscribe(
+        createResponse => {
+          this.createCompteInterne = createResponse;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
     window.location.reload();
   }
 
-  createCompte() {
+  deleteCompte(idClient: number, idCompte: number) {
+    this.clientTestService.deleteCompteById(idClient, idCompte).subscribe(
+        deleteResponse => {
+          this.deleteCompteInterne = deleteResponse;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
     window.location.reload();
   }
 }

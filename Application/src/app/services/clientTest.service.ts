@@ -20,48 +20,56 @@ export class ClientTestService {
 			);
 	}
 
-	findClientById(id: number): Observable<ClientTest> {
-		return this.http.get(this.getClientTestUrl+"/"+id)
+	findClientById(idClient: number): Observable<ClientTest> {
+		return this.http.get(this.getClientTestUrl+"/"+idClient)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
 
-	createClient(clientTest: ClientTest): Observable<boolean> {
-		return this.http.post(this.getClientTestUrl, clientTest)
+	createClient(client: ClientTest): Observable<boolean> {
+		return this.http.post(this.getClientTestUrl, client)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
 
-	deleteClientById(id: number): Observable<boolean> {
-		return this.http.delete(this.getClientTestUrl+"/"+id)
+	deleteClientById(idClient: number): Observable<boolean> {
+		return this.http.delete(this.getClientTestUrl+"/"+idClient)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
 
-	updateClient(id: number, clientTest: ClientTest): Observable<boolean> {
-		return this.http.put(this.getClientTestUrl+"/"+id, clientTest)
+	updateClient(idClient: number, client: ClientTest): Observable<boolean> {
+		return this.http.put(this.getClientTestUrl+"/"+idClient, client)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
 
-	createCompte(idClient:number, compteTest: CompteTest): Observable<boolean> {
-		return this.http.post(this.getClientTestUrl+"/compte"+"/"+idClient, compteTest)
+	createCompte(idClient:number, compte: CompteTest): Observable<boolean> {
+		return this.http.post(this.getClientTestUrl+"/compte"+"/"+idClient, compte)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
 
-	deleteCompteById(idCompte: number): Observable<boolean> {
+	/*deleteCompteById(idCompte: number): Observable<boolean> {
 		return this.http.delete(this.getClientTestUrl+"/compte"+"/"+idCompte)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}*/
+
+	deleteCompteById(idClient: number, idCompte: number): Observable<boolean> {
+		return this.http.delete(this.getClientTestUrl+"/compte"+"/"+idClient+"/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))

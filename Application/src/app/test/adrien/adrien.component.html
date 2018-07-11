@@ -11,7 +11,7 @@
 			<th style="width: 15%;">Mobile</th>
 			<th style="width: 20%;">Actions</th>
 		</tr>
-		<ng-container *ngFor="let client of clientsTestInterne">
+		<ng-container *ngFor="let client of clientsInterne">
 		<tr>
 			<td>{{client.idClient}}</td>
 			<td>{{client.firstName}}</td>
@@ -59,13 +59,13 @@
 			<th style="width: 10%;">Solde</th>
 			<th style="width: 20%;">Actions</th>
 		</tr>
-		<tr *ngFor="let comptes of clientTestInterne.comptes">
-			<td>{{clientTestInterne.idClient}}</td>
+		<tr *ngFor="let comptes of clientInterne.comptes">
+			<td>{{clientInterne.idClient}}</td>
 			<td>{{comptes.idCompte}}</td>
 			<td>{{comptes.description}}</td>
 			<td>{{comptes.solde}}</td>
 			<td>
-				<button class="btn btn-danger" (click)="deleteCompte(comptes.idCompte)">Supprimer</button>
+				<button class="btn btn-danger" (click)="deleteCompte(clientInterne.idClient, comptes.idCompte)">Supprimer</button>
 			</td>
 		</tr>
 		<tr>
