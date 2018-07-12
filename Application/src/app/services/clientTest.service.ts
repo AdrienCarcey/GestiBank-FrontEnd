@@ -75,4 +75,12 @@ export class ClientTestService {
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
+
+	updateCompteById(idCompte: number, compte: CompteTest): Observable<boolean> {
+		return this.http.put(this.getClientTestUrl+"/compte"+"/"+idCompte, compte)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
 }

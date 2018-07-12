@@ -1,3 +1,5 @@
-<p>
-  navigateur works!
-</p>
+<ul>
+  <li><a [ngClass]="{'active': currentRoute === '/test/matthieu'}" href="/test/matthieu">Tableau de bord</a></li>
+  <li><a [ngClass]="{'active': currentRoute === '/admin/conseillers'}" href="/admin/conseillers">Gestion des conseillers</a></li>
+  <li><a [ngClass]="{'active': currentRoute === '/admin/affectations'}" href="/admin/affectations">Gestion des affectations</a></li>
+</ul>

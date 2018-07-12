@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigateur',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigateurComponent implements OnInit {
 
-  constructor() { }
+ currentRoute: string;
+
+  constructor(location: Location, router: Router) {
+    router.events.subscribe((val) => {
+      if(location.path() != ''){
+        this.currentRoute = location.path();
+      } else {
+        this.currentRoute = ''
+      }
+    });
+  }
 
   ngOnInit() {
   }
 
 }
+
+
+
