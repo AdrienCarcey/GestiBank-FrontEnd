@@ -38,12 +38,12 @@ const routes: Routes = [
 			{
 				path: 'onglet',
 				component: OngletComponent
+			},
+			{
+				path: 'claire',
+				component: ClaireComponent
 			}
 		]
-	},
-	{
-		path: 'claire',
-		component: ClaireComponent
 	}
 ];
 
