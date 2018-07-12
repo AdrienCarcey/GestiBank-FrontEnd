@@ -10,8 +10,8 @@ export class ConnexionTestService {
 
 	constructor(private http: Http) {}
 
-	connexion(): Observable<boolean> {
-		return this.http.get(this.getConnexionTestUrl)
+	connexion(connexion: Array<string>): Observable<Array<any>> {
+		return this.http.post(this.getConnexionTestUrl, connexion)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
