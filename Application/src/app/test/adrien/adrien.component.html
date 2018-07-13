@@ -64,7 +64,7 @@
 			<td><input class="form-control" type="text" formControlName="updateDescription" value={{comptes.description}}></td>
 			<td><input class="form-control" type="text" formControlName="updateSolde" value={{comptes.solde}}></td>
 			<td>
-				<button class="btn btn-danger {{buttonSupprimerCompte}}" (click)="deleteCompte(clientInterne.idClient, comptes.idCompte)">Supprimer</button>
+				<button class="btn btn-danger {{buttonSupprimerCompte}}" (click)="deleteCompte(comptes.idCompte)">Supprimer</button>
 				<button class="btn btn-success {{buttonEnregistrerCompte}}" (click)="updateCompte(comptes.idCompte)">Enregistrer</button>
 			</td>
 		</tr>

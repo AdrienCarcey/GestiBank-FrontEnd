@@ -171,8 +171,8 @@ export class AdrienComponent implements OnInit {
     window.location.reload();
   }
 
-  deleteCompte(idClient: number, idCompte: number) {
-    this.clientTestService.deleteCompteById(idClient, idCompte).subscribe(
+  deleteCompte(idCompte: number) {
+    this.clientTestService.deleteCompteByIdCompte(idCompte).subscribe(
         deleteResponse => {
           this.deleteCompteInterne = deleteResponse;
         },

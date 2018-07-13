@@ -60,15 +60,15 @@ export class ClientTestService {
 			);
 	}
 
-	/*deleteCompteById(idCompte: number): Observable<boolean> {
+	deleteCompteByIdCompte(idCompte: number): Observable<boolean> {
 		return this.http.delete(this.getClientTestUrl+"/compte"+"/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
-	}*/
+	}
 
-	deleteCompteById(idClient: number, idCompte: number): Observable<boolean> {
+	deleteCompteByIdClient(idClient: number, idCompte: number): Observable<boolean> {
 		return this.http.delete(this.getClientTestUrl+"/compte"+"/"+idClient+"/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
