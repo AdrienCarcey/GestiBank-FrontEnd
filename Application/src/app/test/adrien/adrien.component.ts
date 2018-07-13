@@ -22,65 +22,54 @@ export class AdrienComponent implements OnInit {
   deleteCompteInterne: boolean;
   updateCompteInterne: boolean;
 
-  buttonModifierClient: String;
-  buttonAnnulerClient: String;
-  buttonSupprimerClient: String;
-  buttonEnregistrerClient: String;
-  formCreationClient:String;
-
   clientForm = new FormGroup ({
-    updateFirstName: new FormControl(),
-    updateLastName: new FormControl(),
-    updateEmail: new FormControl(),
-    updateMobile: new FormControl(),
-
     createFirstName: new FormControl(),
     createLastName: new FormControl(),
     createEmail: new FormControl(),
     createMobile: new FormControl()
   })
 
-  buttonModifierCompte: String;
-  buttonAnnulerCompte: String;
-  buttonSupprimerCompte: String;
-  buttonEnregistrerCompte: String;
-  formCreationCompte:String;
+  buttonModifierClient = {};
+  buttonAnnulerClient = {};
+  buttonSupprimerClient = {};
+  buttonEnregistrerClient = {};
+  formCreationClient: string;
 
   compteForm = new FormGroup ({
-    updateDescription: new FormControl(),
-    updateSolde: new FormControl(),
-
     createIdClient: new FormControl(),
     createDescription: new FormControl(),
     createSolde: new FormControl()
   });
+
+  buttonModifierCompte = {};
+  buttonAnnulerCompte = {};
+  buttonSupprimerCompte = {};
+  buttonEnregistrerCompte = {};
+  formCreationCompte: string;
 	
 	constructor(private clientTestService: ClientTestService) {}
 
 	ngOnInit() {
-    this.buttonModifierClient = "visible";
-    this.buttonAnnulerClient = "invisible";
-    this.buttonSupprimerClient = "visible";
-    this.buttonEnregistrerClient = "invisible";
-    this.formCreationClient = "visible";
-
-    this.clientForm.controls['updateFirstName'].disable();
-    this.clientForm.controls['updateLastName'].disable();
-    this.clientForm.controls['updateEmail'].disable();
-    this.clientForm.controls['updateMobile'].disable();
-    
-    this.buttonModifierCompte = "visible";
-    this.buttonAnnulerCompte = "invisible";
-    this.buttonSupprimerCompte = "visible";
-    this.buttonEnregistrerCompte = "invisible";
-    this.formCreationCompte = "visible";
-    
-    this.compteForm.controls['updateDescription'].disable();
-    this.compteForm.controls['updateSolde'].disable();
-
     this.clientTestService.findAllClients().subscribe(
         clientsResponse => {
           this.clientsInterne = clientsResponse;
+
+          for(let client of this.clientsInterne) {
+            this.clientForm.addControl('updateFirstName'+client.idClient, new FormControl());
+            this.clientForm.addControl('updateLastName'+client.idClient, new FormControl());
+            this.clientForm.addControl('updateEmail'+client.idClient, new FormControl());
+            this.clientForm.addControl('updateMobile'+client.idClient, new FormControl());
+
+            this.clientForm.controls['updateFirstName'+client.idClient].disable();
+            this.clientForm.controls['updateLastName'+client.idClient].disable();
+            this.clientForm.controls['updateEmail'+client.idClient].disable();
+            this.clientForm.controls['updateMobile'+client.idClient].disable();
+
+            this.buttonModifierClient[client.idClient]='visible';
+            this.buttonAnnulerClient[client.idClient]='invisible';
+            this.buttonSupprimerClient[client.idClient]='visible';
+            this.buttonEnregistrerClient[client.idClient]='invisible';
+          }
         },
         error => {
           console.log(error);
@@ -92,6 +81,19 @@ export class AdrienComponent implements OnInit {
     this.clientTestService.findClientById(idClient).subscribe(
         clientResponse => {
           this.clientInterne = clientResponse;
+
+          for(let compte of this.clientInterne.comptes) {
+            this.compteForm.addControl('updateDescription'+compte.idCompte, new FormControl());
+            this.compteForm.addControl('updateSolde'+compte.idCompte, new FormControl());
+
+            this.compteForm.controls['updateDescription'+compte.idCompte].disable();
+            this.compteForm.controls['updateSolde'+compte.idCompte].disable();
+
+            this.buttonModifierCompte[compte.idCompte]='visible';
+            this.buttonAnnulerCompte[compte.idCompte]='invisible';
+            this.buttonSupprimerCompte[compte.idCompte]='visible';
+            this.buttonEnregistrerCompte[compte.idCompte]='invisible';
+          }
         },
         error => {
           console.log(error);
@@ -134,10 +136,10 @@ export class AdrienComponent implements OnInit {
 
   updateClient(idClient: number) {
     let client = new ClientTest();
-    client.firstName = this.clientForm.controls['updateFirstName'].value;
-    client.lastName = this.clientForm.controls['updateLastName'].value;
-    client.email = this.clientForm.controls['updateEmail'].value;
-    client.mobile = this.clientForm.controls['updateMobile'].value;
+    client.firstName = this.clientForm.controls['updateFirstName'+idClient].value;
+    client.lastName = this.clientForm.controls['updateLastName'+idClient].value;
+    client.email = this.clientForm.controls['updateEmail'+idClient].value;
+    client.mobile = this.clientForm.controls['updateMobile'+idClient].value;
 
     this.clientTestService.updateClient(idClient, client).subscribe(
        updateResponse => {
@@ -171,8 +173,8 @@ export class AdrienComponent implements OnInit {
     window.location.reload();
   }
 
-  deleteCompte(idCompte: number) {
-    this.clientTestService.deleteCompteByIdCompte(idCompte).subscribe(
+  deleteCompte(idClient: number, idCompte: number) {
+    this.clientTestService.deleteCompteByIdClient(idClient, idCompte).subscribe(
         deleteResponse => {
           this.deleteCompteInterne = deleteResponse;
         },
@@ -186,8 +188,8 @@ export class AdrienComponent implements OnInit {
 
   updateCompte(idCompte: number) {
     let compte = new CompteTest();
-    compte.description = this.compteForm.controls['updateDescription'].value;
-    compte.solde = this.compteForm.controls['updateSolde'].value;
+    compte.description = this.compteForm.controls['updateDescription'+idCompte].value;
+    compte.solde = this.compteForm.controls['updateSolde'+idCompte].value;
 
     this.clientTestService.updateCompteById(idCompte, compte).subscribe(
         updateResponse => {
@@ -201,51 +203,51 @@ export class AdrienComponent implements OnInit {
     window.location.reload();
   }
 
-  modifierClient() {
-    this.buttonModifierClient = "invisible";
-    this.buttonAnnulerClient = "visible";
-    this.buttonSupprimerClient = "invisible";
-    this.buttonEnregistrerClient = "visible";
-    this.formCreationClient = "invisible";
+  modifierClient(idClient: number) {
+    this.buttonModifierClient[idClient] = 'invisible';
+    this.buttonAnnulerClient[idClient] = 'visible';
+    this.buttonSupprimerClient[idClient] = 'invisible';
+    this.buttonEnregistrerClient[idClient] = 'visible';
+    this.formCreationClient = 'invisible';
 
-    this.clientForm.controls['updateFirstName'].enable();
-    this.clientForm.controls['updateLastName'].enable();
-    this.clientForm.controls['updateEmail'].enable();
-    this.clientForm.controls['updateMobile'].enable();
+    this.clientForm.controls['updateFirstName'+idClient].enable();
+    this.clientForm.controls['updateLastName'+idClient].enable();
+    this.clientForm.controls['updateEmail'+idClient].enable();
+    this.clientForm.controls['updateMobile'+idClient].enable();
   }
 
-  annulerClient() {
-    this.buttonModifierClient = "visible";
-    this.buttonAnnulerClient = "invisible";
-    this.buttonSupprimerClient = "visible";
-    this.buttonEnregistrerClient = "invisible";
-    this.formCreationClient = "visible";
+  annulerClient(idClient: number) {
+    this.buttonModifierClient[idClient] = 'visible';
+    this.buttonAnnulerClient[idClient] = 'invisible';
+    this.buttonSupprimerClient[idClient] = 'visible';
+    this.buttonEnregistrerClient[idClient] = 'invisible';
+    this.formCreationClient = 'visible';
 
-    this.clientForm.controls['updateFirstName'].disable();
-    this.clientForm.controls['updateLastName'].disable();
-    this.clientForm.controls['updateEmail'].disable();
-    this.clientForm.controls['updateMobile'].disable();
+    this.clientForm.controls['updateFirstName'+idClient].disable();
+    this.clientForm.controls['updateLastName'+idClient].disable();
+    this.clientForm.controls['updateEmail'+idClient].disable();
+    this.clientForm.controls['updateMobile'+idClient].disable();
   }
 
-   modifierCompte() {
-    this.buttonModifierCompte = "invisible";
-    this.buttonAnnulerCompte = "visible";
-    this.buttonSupprimerCompte = "invisible";
-    this.buttonEnregistrerCompte = "visible";
-    this.formCreationCompte = "invisible";
+   modifierCompte(idCompte: number) {
+    this.buttonModifierCompte[idCompte] = 'invisible';
+    this.buttonAnnulerCompte[idCompte] = 'visible';
+    this.buttonSupprimerCompte[idCompte] = 'invisible';
+    this.buttonEnregistrerCompte[idCompte] = 'visible';
+    this.formCreationCompte = 'invisible';
     
-    this.compteForm.controls['updateDescription'].enable();
-    this.compteForm.controls['updateSolde'].enable();
+    this.compteForm.controls['updateDescription'+idCompte].enable();
+    this.compteForm.controls['updateSolde'+idCompte].enable();
   }
 
-  annulerCompte() {
-    this.buttonModifierCompte = "visible";
-    this.buttonAnnulerCompte = "invisible";
-    this.buttonSupprimerCompte = "visible";
-    this.buttonEnregistrerCompte = "invisible";
-    this.formCreationCompte = "visible";
+  annulerCompte(idCompte: number) {
+    this.buttonModifierCompte[idCompte] = 'visible';
+    this.buttonAnnulerCompte[idCompte] = 'invisible';
+    this.buttonSupprimerCompte[idCompte] = 'visible';
+    this.buttonEnregistrerCompte[idCompte] = 'invisible';
+    this.formCreationCompte = 'visible';
     
-    this.compteForm.controls['updateDescription'].disable();
-    this.compteForm.controls['updateSolde'].disable();
+    this.compteForm.controls['updateDescription'+idCompte].disable();
+    this.compteForm.controls['updateSolde'+idCompte].disable();
   }
 }
