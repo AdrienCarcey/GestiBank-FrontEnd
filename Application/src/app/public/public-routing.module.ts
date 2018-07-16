@@ -15,6 +15,8 @@ import { ContactConfirmationComponent } from './contact-confirmation/contact-con
 import { ConnexionComponent } from './connexion/connexion.component';
 import { DeconnexionComponent } from './deconnexion/deconnexion.component';
 
+
+
 const routes: Routes = [
 	{
 		path: 'public',

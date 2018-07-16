@@ -1,3 +1,7 @@
-<p>
-  navigateur works!
-</p>
+<h2>Espace Public</h2><hr/>
+<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <a [ngClass]="{'nav-link active' : currentRoute === '/public'}" href="/public"> Tableau de bord </a>
+  <a [ngClass]="{'nav-link active' : currentRoute === '/public/informations'}" href="/public/informations"> Informations </a>
+  <a [ngClass]="{'nav-link active' : currentRoute === '/public/adhesion/infoperso'}" href="/public/adhesion/infoperso"> Demande d'adhésion </a>
+  <a [ngClass]="{'nav-link active' : currentRoute === '/public/convertisseur'}" href="/public/convertisseur"> Convertisseur de devises </a>
+</div>
