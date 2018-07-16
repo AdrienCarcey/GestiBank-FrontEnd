@@ -9,13 +9,22 @@ import { Router } from '@angular/router';
 })
 export class NavigateurComponent implements OnInit {
 
-constructor() { }
+currentRoute: string;
+
+  constructor(location: Location, router: Router) {
+    router.events.subscribe((val) => {
+      if(location.path() != ''){
+        this.currentRoute = location.path();
+      } else {
+        this.currentRoute = ''
+      }
+    });
+  }
 
   ngOnInit() {
   }
 
 }
-
 
 
 
