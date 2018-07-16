@@ -5,4 +5,7 @@ export abstract class OperationBancaire {
 	libelleOperation: String;
 	montantOperation: number;
 	dateOperation: Date;
+
+	//Constructors
+	constructor(){}
 }

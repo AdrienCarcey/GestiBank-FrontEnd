@@ -7,4 +7,7 @@ export abstract class Compte {
 	statut: boolean;
 	solde: number;
 	operationsBancaires: Array<OperationBancaire>;
+
+	//Constructors
+	constructor(){}
 }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from "@angular/http";
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { ConseillerRoutingModule } from './conseiller-routing.module';
 
@@ -8,16 +10,14 @@ import { EnteteComponent } from './entete/entete.component';
 import { NavigateurComponent } from './navigateur/navigateur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientsComponent } from './clients/clients.component';
-import { ClientsConsultationComponent } from './clients-consultation/clients-consultation.component';
-import { ClientsConsultationCompteComponent } from './clients-consultation-compte/clients-consultation-compte.component';
-import { ClientsModificationComponent } from './clients-modification/clients-modification.component';
-import { DemandesAdhesionComponent } from './demandes-adhesion/demandes-adhesion.component';
-import { DemandesClientComponent } from './demandes-client/demandes-client.component';
-import { DemandesMessagesComponent } from './demandes-messages/demandes-messages.component';
+import { DemandesComponent } from './demandes/demandes.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     ConseillerRoutingModule
   ],
   declarations: [
@@ -26,12 +26,7 @@ import { DemandesMessagesComponent } from './demandes-messages/demandes-messages
   	NavigateurComponent,
   	DashboardComponent,
   	ClientsComponent,
-  	ClientsConsultationComponent,
-  	ClientsConsultationCompteComponent,
-  	ClientsModificationComponent,
-  	DemandesAdhesionComponent,
-  	DemandesClientComponent,
-  	DemandesMessagesComponent
+  	DemandesComponent
   ]
 })
 export class ConseillerModule { }

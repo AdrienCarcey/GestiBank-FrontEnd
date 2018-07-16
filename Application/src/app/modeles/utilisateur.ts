@@ -12,4 +12,7 @@ export abstract class Utilisateur {
 	identite: Identite;
 	contact: Contact;
 	demandes: Array<Demande>;
+
+	//Constructors
+	constructor(){}
 }

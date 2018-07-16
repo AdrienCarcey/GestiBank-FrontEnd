@@ -5,4 +5,7 @@ export abstract class Demande {
 	dateDemande: Date;
 	dateTraitement: Date;
 	statut: String;
+
+	//Constructors
+	constructor(){}
 }
