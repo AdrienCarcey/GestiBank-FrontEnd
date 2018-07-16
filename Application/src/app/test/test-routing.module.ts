@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { TestComponent } from './test/test.component';
 import { AdrienComponent } from './adrien/adrien.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'adrien',
-				component: AdrienComponent
+				component: AdrienComponent,
 			},
 			{
 				path: 'aymen',

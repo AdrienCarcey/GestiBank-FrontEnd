@@ -4,10 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PublicComponent } from './public/public.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InformationsComponent } from './informations/informations.component';
-import { AdhesionInfopersoComponent } from './adhesion-infoperso/adhesion-infoperso.component';
-import { AdhesionInfobancaireComponent } from './adhesion-infobancaire/adhesion-infobancaire.component';
-import { AdhesionCompteComponent } from './adhesion-compte/adhesion-compte.component';
-import { AdhesionDocumentsComponent } from './adhesion-documents/adhesion-documents.component';
+import { AdhesionComponent } from './adhesion/adhesion.component';
 import { AdhesionConfirmationComponent } from './adhesion-confirmation/adhesion-confirmation.component';
 import { ConvertisseurComponent } from './convertisseur/convertisseur.component';
 import { ContactFormulaireComponent } from './contact-formulaire/contact-formulaire.component';
@@ -31,20 +28,8 @@ const routes: Routes = [
 				component: InformationsComponent
 			},
 			{
-				path: 'adhesion/infoperso',
-				component: AdhesionInfopersoComponent
-			},
-			{
-				path: 'adhesion/infobancaire',
-				component: AdhesionInfobancaireComponent
-			},
-			{
-				path: 'adhesion/compte',
-				component: AdhesionCompteComponent
-			},
-			{
-				path: 'adhesion/documents',
-				component: AdhesionDocumentsComponent
+				path: 'adhesion',
+				component: AdhesionComponent
 			},
 			{
 				path: 'adhesion/confirmation',
