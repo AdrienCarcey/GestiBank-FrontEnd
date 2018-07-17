@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgControl } from '@angular/forms';
 
 import { DemandeInscription } from "../../modeles/demande-inscription";
 import { DemandeModificationDonnees } from "../../modeles/demande-modification-donnees";

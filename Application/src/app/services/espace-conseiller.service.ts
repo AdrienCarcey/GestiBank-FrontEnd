@@ -93,4 +93,12 @@ export class EspaceConseillerService {
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
+
+	dashboard(idConseiller: number): Observable<Array<String>> {
+		return this.http.get(this.getEspaceConseillerUrl+"/dashboard/"+idConseiller)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
 }
