@@ -5,6 +5,7 @@
 		<tr>
 			<th>IdClient</th>
 			<th>Statut</th>
+			<th>Date d'ouverture du compte</th>
 			<th>Nom</th>
 			<th>Prénom</th>
 			<th>Actions</th>
@@ -12,6 +13,7 @@
 		<tr *ngFor="let c of clients">
 			<td>{{c.idUtilisateur}}</td>
 			<td>{{c.statut}}</td>
+			<td>{{c.dateOuvertureCompte | date: 'dd/MM/yyyy'}}</td>
 			<td>{{c.identite.nom}}</td>
 			<td>{{c.identite.prenom}}</td>
 			<td>
@@ -54,7 +56,7 @@
 			</tr>
 			<tr>
 				<th>Date de naissance</th>
-				<td><input class="form-control" type="date" formControlName="dateNaissance" value={{client.identite.dateNaissance}}></td>
+				<td><input class="form-control" type="text" formControlName="dateNaissance" value="{{client.identite.dateNaissance | date: 'dd/MM/yyyy'}}"></td>
 			</tr>
 		</table>
 		<h3>Situation familiale</h3>
@@ -141,7 +143,7 @@
 				<td></td>
 				<td>{{c.solde}}</td>
 				<td>
-					<button class="btn btn-primary" (click)="findClientCompte(c.idCompte)" >Afficher</button>
+					<button class="btn btn-primary" (click)="findCompteOperation(c.idCompte)" >Afficher</button>
 					<button class="btn btn-success" (click)="openClientCompte(c.idCompte)">Ouvrir</button>
 					<button class="btn btn-danger" (click)="closeClientCompte(c.idCompte)">Fermer</button>
 				</td>
@@ -149,7 +151,7 @@
 		</table>
 	</div>
 	<h3>Opérations</h3>
-  	<!-- <div class="table-responsive">
+  	<div class="table-responsive">
 		<table class="table table-striped table-bordered table-sm">
 			<tr>
 				<th>idOperation</th>
@@ -157,14 +159,14 @@
 				<th>libelleOperation</th>
 				<th>montantOperation</th>
 			</tr>
-			<tr *ngFor="let operation of compte.operationsBancaires">
+			<tr *ngFor="let operation of operationsBancaires">
 				<td>{{operation.idOperation}}</td>
-				<td>{{operation.dateOperation}}</td>
+				<td>{{operation.dateOperation | date: 'dd/MM/yyyy'}}</td>
 				<td>{{operation.libelleOperation}}</td>
 				<td>{{operation.montantOperation}}</td>
 			</tr>
 		</table>
-	</div> -->
+	</div>
   </div>
 
 </div>

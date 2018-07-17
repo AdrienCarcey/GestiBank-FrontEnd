@@ -3,30 +3,36 @@ import { FormControl, FormGroup, NgControl } from '@angular/forms';
 
 import { Client } from "../../modeles/client";
 import { Compte } from "../../modeles/compte";
-import { CompteCourantAvecDecouvert } from "../../modeles/compte-courant-avec-decouvert";
-import { CompteCourantSansDecouvert } from "../../modeles/compte-courant-sans-decouvert";
-import { CompteRemunerateur } from "../../modeles/compte-remunerateur";
 import { OperationBancaire } from "../../modeles/operation-bancaire";
-import { OperationCredit } from "../../modeles/operation-credit";
-import { OperationDebit } from "../../modeles/operation-debit";
+import { Identite } from "../../modeles/identite";
+import { SituationFamiliale } from "../../modeles/situation-familiale";
+import { Contact } from "../../modeles/contact";
+import { Adresse } from "../../modeles/adresse";
+import { Documents } from "../../modeles/documents";
 
 import { EspaceConseillerService } from "../../services/espace-conseiller.service";
+import { SessionService } from "../../services/session.service";
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css'],
-  providers: [EspaceConseillerService]
+  providers: [
+    EspaceConseillerService,
+    SessionService
+  ]
 })
 
 export class ClientsComponent implements OnInit {
+  idConseiller: number;
 
   clients = new Array<Client>();
   client = new Client();
   openClient: Boolean;
   closeClient: Boolean;
+  updateClient: Boolean;
 
-  compte: Compte;
+  operationsBancaires = new Array<OperationBancaire>();
   openCompte: Boolean;
   closeCompte: Boolean;
 
@@ -56,10 +62,15 @@ export class ClientsComponent implements OnInit {
   buttonAnnulerClient: string;
   buttonEnregistrerClient: string;
 
-	constructor(private espaceConseillerService: EspaceConseillerService) { }
+	constructor(
+    private espaceConseillerService: EspaceConseillerService,
+    private sessionService: SessionService
+  ) { }
 
 	ngOnInit() {
-    this.espaceConseillerService.findAllClients(2).subscribe(
+    this.idConseiller = this.sessionService.getSessionId();
+
+    this.espaceConseillerService.findAllClients(this.idConseiller).subscribe(
       clientsResponse => {
         this.clients = clientsResponse;
       },
@@ -112,6 +123,51 @@ export class ClientsComponent implements OnInit {
     window.location.reload();
   }
 
+  updateClientAccount(idClient: number) {
+    let client = new Client();
+    
+    let identite = new Identite;
+    identite.titreCivilite = this.clientForm.controls['titreCivilite'].value;
+    identite.nom = this.clientForm.controls['nom'].value;
+    identite.prenom = this.clientForm.controls['prenom'].value;
+    identite.dateNaissance = this.clientForm.controls['dateNaissance'].value;
+    client.identite = identite;
+
+    let situationFamiliale = new SituationFamiliale;
+    situationFamiliale.situationMatrimoniale = this.clientForm.controls['situationMatrimoniale'].value;
+    situationFamiliale.nombreEnfants = this.clientForm.controls['nombreEnfants'].value;
+    client.situationFamiliale = situationFamiliale;
+
+    let contact = new Contact;
+    let adresse = new Adresse;
+    adresse.numeroVoie = this.clientForm.controls['numeroVoie'].value;
+    adresse.libelleVoie = this.clientForm.controls['libelleVoie'].value;
+    adresse.complementAdresse = this.clientForm.controls['complementAdresse'].value;
+    adresse.codePostal = this.clientForm.controls['codePostal'].value;
+    adresse.ville = this.clientForm.controls['ville'].value;
+    adresse.pays = this.clientForm.controls['pays'].value;
+    contact.adresse = adresse;
+    contact.telephone = this.clientForm.controls['telephone'].value;
+    contact.email = this.clientForm.controls['email'].value;
+    client.contact = contact;
+
+    let documents = new Documents;
+    documents.pieceIdentite = this.clientForm.controls['pieceIdentite'].value;
+    documents.justificatifDomicile = this.clientForm.controls['justificatifDomicile'].value;
+    client.documents = documents;
+
+    this.espaceConseillerService.updateClientAccount(idClient, client).subscribe(
+      updateClientResponse => {
+        this.updateClient = updateClientResponse;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    window.location.reload();
+  }
+
   modifierClient() {
     this.clientForm.enable();
 
@@ -128,23 +184,10 @@ export class ClientsComponent implements OnInit {
     this.buttonEnregistrerClient = 'invisible';
   }
   
-  findClientCompte(idCompte: number) {
-    this.espaceConseillerService.findClientCompte(idCompte).subscribe(
-      compteResponse => {
-        if(compteResponse instanceof CompteCourantAvecDecouvert) {
-          this.compte = new CompteCourantAvecDecouvert();
-          this.compte = compteResponse;
-        }
-        
-        else if(compteResponse instanceof CompteCourantSansDecouvert) {
-          this.compte = new CompteCourantSansDecouvert();
-          this.compte = compteResponse;
-        }
-        
-        else if(compteResponse instanceof CompteRemunerateur) {
-          this.compte = new CompteRemunerateur();
-          this.compte = compteResponse;
-        }
+  findCompteOperation(idCompte: number) {
+    this.espaceConseillerService.findCompteOperation(idCompte).subscribe(
+      operationResponse => {
+         this.operationsBancaires = operationResponse;
       },
       error => {
         console.log(error);
