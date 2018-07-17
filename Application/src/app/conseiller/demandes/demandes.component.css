@@ -1,0 +1,21 @@
+a{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	text-decoration: none;
+	color : black;
+}
+
+a:hover {
+	color: #b7bab1;
+	font-style: italic;
+}
+
+.nav-tabs {
+	border-color: #b7bab1;
+}
+
+.nav-link.active {
+	background-color: #b7bab1;
+	font-weight: bold;
+}
