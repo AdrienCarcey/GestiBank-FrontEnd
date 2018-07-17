@@ -22,8 +22,7 @@ import { DeconnexionComponent } from './deconnexion/deconnexion.component';
     CommonModule,
     PublicRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    PublicRoutingModule
+    ReactiveFormsModule
   ],
   declarations: [
   	PublicComponent,

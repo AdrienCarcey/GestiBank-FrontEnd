@@ -5,7 +5,8 @@ import { map, catchError } from "rxjs/operators";
 
 import { OperationBancaire } from "../modeles/operation-bancaire";
 import { Compte } from "../modeles/compte";
-
+import { MessageClient } from '../modeles/message-client';
+import { Client } from '../modeles/client';
 
 @Injectable()
 export class EspaceClientService {
@@ -30,6 +31,23 @@ export class EspaceClientService {
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
+
+	createMessageClient(messageClient: MessageClient): Observable<Boolean>{
+		return this.http.post(this.getEspaceClientUrl + "/message", messageClient)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			)
+	}
+
+	findClientById(idClient: number): Observable<Client> {
+		return this.http.get(this.getEspaceClientUrl + "/" + idClient)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
 
 
 }

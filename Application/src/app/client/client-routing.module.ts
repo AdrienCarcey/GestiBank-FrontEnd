@@ -2,19 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ClientComponent } from './client/client.component';
+import { EnteteComponent } from './entete/entete.component';
+import { NavigateurComponent } from './navigateur/navigateur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { InformationsInfopersoComponent } from './informations-infoperso/informations-infoperso.component';
-import { InformationsCompteComponent } from './informations-compte/informations-compte.component';
-import { ConsultationComponent } from './consultation/consultation.component';
-import { GestionVirementComponent } from './gestion-virement/gestion-virement.component';
-import { GestionVirementConfirmationComponent } from './gestion-virement-confirmation/gestion-virement-confirmation.component';
-import { DemandesComptebancaireComponent } from './demandes-comptebancaire/demandes-comptebancaire.component';
-import { DemandesDocumentbancaireComponent } from './demandes-documentbancaire/demandes-documentbancaire.component';
-import { DemandesInfopersoComponent } from './demandes-infoperso/demandes-infoperso.component';
-import { DemandesCompteComponent } from './demandes-compte/demandes-compte.component';
-import { DemandesConfirmationComponent } from './demandes-confirmation/demandes-confirmation.component';
 import { ContactFormulaireComponent } from './contact-formulaire/contact-formulaire.component';
 import { ContactConfirmationComponent } from './contact-confirmation/contact-confirmation.component';
+import { DemandeComponent } from './demande/demande.component';
+import { VirementComponent } from './virement/virement.component';
+import { VirementConfirmationComponent } from './virement-confirmation/virement-confirmation.component';
+import { InfopersoComponent } from './infoperso/infoperso.component';
+import { ConsultationComponent } from './consultation/consultation.component'
+import { DemandeConfirmationComponent } from './demande-confirmation/demande-confirmation.component'
 
 const routes: Routes = [
 	{
@@ -26,47 +24,31 @@ const routes: Routes = [
 				component: DashboardComponent
 			},
 			{
-				path: 'informations/infoperso',
-				component: InformationsInfopersoComponent
+				path: 'infoperso',
+				component: InfopersoComponent
 			},
 			{
-				path: 'informations/compte',
-				component: InformationsCompteComponent
-			},
-			{
-				path: 'consultation',
+				path: 'comptes',
 				component: ConsultationComponent
 			},
 			{
-				path: 'gestion/virement',
-				component: GestionVirementComponent
+				path: 'demande',
+				component: DemandeComponent
 			},
 			{
-				path: 'gestion/virement/confirmation',
-				component: GestionVirementConfirmationComponent
+				path: 'demande/confirmation',
+				component: DemandeConfirmationComponent
 			},
 			{
-				path: 'demandes/comptebancaire',
-				component: DemandesComptebancaireComponent
+				path: 'virement',
+				component: VirementComponent
 			},
 			{
-				path: 'demandes/documentbancaire',
-				component: DemandesDocumentbancaireComponent
+				path: 'virement/confirmation',
+				component: VirementConfirmationComponent
 			},
 			{
-				path: 'demandes/infoperso',
-				component: DemandesInfopersoComponent
-			},
-			{
-				path: 'demandes/compte',
-				component: DemandesCompteComponent
-			},
-			{
-				path: 'demandes/confirmation',
-				component: DemandesConfirmationComponent
-			},
-			{
-				path: 'contact/formulaire',
+				path: 'contact',
 				component: ContactFormulaireComponent
 			},
 			{

@@ -1,3 +1,23 @@
-<p>
-  contact-formulaire works!
-</p>
+<form class="form-group" [formGroup]="messageForm">
+  	<div class="tab-content">
+	    <div class="tab-pane active container" id="perso">
+	      
+	      	<div class="table-responsive">
+
+		        <table class="table table-striped table-bordered table-sm">
+		          <tr>
+		            <th>Sujet</th>
+		            <th><input type="text" class="form-control" formControlName="sujet"></th>
+		          </tr>		          
+		          <tr>
+		            <th>Message</th>
+		            <th><textarea formControlName="message"></textarea></th>
+		          </tr>          
+		        </table>
+			</div>
+		</div>
+	</div>
+
+	<button class="btn btn-primary" (click)="createMessageClient()">Envoyer</button>
+
+</form>

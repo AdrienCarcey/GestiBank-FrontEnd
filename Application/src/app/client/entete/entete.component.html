@@ -13,24 +13,24 @@
 
     <i class="material-icons" style="font-size:40px;color:white">mail_outline</i>
     <li class="nav-item">
-      <a class="nav-link" href="/public/contact/formulaire">Contact</a>
+      <a class="nav-link" href="client/contact">Contact</a>
     </li>
 
     <i class="material-icons" style="font-size:40px;color:white">language</i>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="./claire" id="navbardrop" data-toggle="dropdown">
+      <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
         Français
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="./claire">Français</a>
-        <a class="dropdown-item" href="./claire">Anglais</a>
+        <a class="dropdown-item">Français</a>
+        <a class="dropdown-item">Anglais</a>
       </div>
     </li>
     
     
-    <div>Bonjour {{nomUtilisateur}}</div>
+    <!-- <div>Bonjour {{nomUtilisateur}}</div> -->
 
-    <i class="material-icons" style="font-size:40px;color:white;margin-left: 900px;">power_settings_new</i>
+    <i class="material-icons" style="font-size:40px;color:white;margin-left: 25%;">power_settings_new</i>
     <li class="nav-item">
       <a class="nav-link" href="/public/deconnexion" (click)="sessionService.destroySession()">Déconnexion</a>
     </li>

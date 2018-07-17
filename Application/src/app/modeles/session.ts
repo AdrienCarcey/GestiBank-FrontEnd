@@ -5,5 +5,8 @@ export class Session {
 	utilisateurValide: boolean;
 	nomUtilisateur: string;
 	typeUtilisateur: string;
+	nom: string;
+	prenom: string;
 
+	constructor(){};
 }

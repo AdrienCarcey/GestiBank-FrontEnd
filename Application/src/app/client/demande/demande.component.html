@@ -1,0 +1,30 @@
+<div class="container">
+
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+		    <a class="nav-link active" data-toggle="tab" href="#nouveauCompte">Nouveau Compte</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" data-toggle="tab" href="#chequier">Demande Chéquier</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" data-toggle="tab" href="#rib">Imprimer RIB</a>
+		</li>  
+	</ul>
+
+	<div class="tab-content">
+
+		<div class="tab-pane active container" id="nouveauCompte"></div>
+		  	
+		<div class="tab-pane container" id="chequier">
+
+			<table>
+		        <tr>
+		          	<th>Demander un nouveau chéquier</th>
+		          	<th><button class="btn btn-primary" (click)="createDemandeChequier()">Demande</button></th>
+		        </tr>
+      		</table>
+
+		</div>
+	</div>
+</div>

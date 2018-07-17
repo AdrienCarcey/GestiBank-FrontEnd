@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { FormControl, FormGroup, NgControl, Validators } from '@angular/forms';
 import { EspacePublicService } from '../../services/espace-public.service';
 import { MessagePublic } from '../../modeles/message-public';
@@ -14,7 +16,8 @@ export class ContactFormulaireComponent implements OnInit {
 
   	messageForm: FormGroup;
 
-  	constructor(private espacePublicService: EspacePublicService) { }
+  	constructor(private espacePublicService: EspacePublicService,
+  		private router: Router) { }
 
   	ngOnInit() {
 
@@ -31,25 +34,27 @@ export class ContactFormulaireComponent implements OnInit {
 
   	createMessagePublic(){
 
-		let message = new MessagePublic();
-		message.nom = this.messageForm.controls["nom"].value;
-		message.prenom = this.messageForm.controls["prenom"].value;
-		message.email = this.messageForm.controls["email"].value;
-		message.message = this.messageForm.controls["message"].value;
-  		message.sujet = this.messageForm.controls["sujet"].value;
-  		message.statut = "demande non traitee";
-  		message.dateDemande = new Date();
-  		
-	  	this.espacePublicService.createMessagePublic(message).subscribe(
-	  		espacePublicResponse => {
-	  			console.log("Réponse reçue");
-	  			if (espacePublicResponse){
-	  				console.log("Message enregistré");
-	  			}else{ 
-	  				console.log("Message rejeté")
-	  			}
-	  		}
-  		)
-  }
+  		let message = new MessagePublic();
+  		message.nom = this.messageForm.controls["nom"].value;
+  		message.prenom = this.messageForm.controls["prenom"].value;
+  		message.email = this.messageForm.controls["email"].value;
+  		message.message = this.messageForm.controls["message"].value;
+    		message.sujet = this.messageForm.controls["sujet"].value;
+    		message.statut = "demande non traitee";
+    		message.dateDemande = new Date();
+    		
+  	  	this.espacePublicService.createMessagePublic(message).subscribe(
+  	  		espacePublicResponse => {
+  	  			console.log("Réponse reçue");
+  	  			if (espacePublicResponse){
+  	  				console.log("Message enregistré");
+  	  			}else{ 
+  	  				console.log("Message rejeté")
+  	  			}
+  	  		}
+    		)
+
+    		this.router.navigateByUrl('/public/contact/confirmation');
+    }
 
 }

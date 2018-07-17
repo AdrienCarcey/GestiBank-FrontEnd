@@ -18,6 +18,14 @@ export class SessionService {
 		return JSON.parse(localStorage.getItem("session")).nomUtilisateur;
 	}
 
+	getSessionNom(){
+		return JSON.parse(localStorage.getItem("session")).nom;
+	}
+
+	getSessionPrenom(){
+		return JSON.parse(localStorage.getItem("session")).prenom;
+	}
+
 	getSessionId(){
 		return JSON.parse(localStorage.getItem("session")).idUtilisateur;
 	}

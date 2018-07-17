@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { DemandeInscription } from '../../modeles/demande-inscription';
 import { Client } from '../../modeles/client';
@@ -19,7 +20,8 @@ export class AdhesionComponent implements OnInit {
 
   demandeInscriptionForm: FormGroup;
 
-  constructor(private espacePublicService: EspacePublicService) { }
+  constructor(private espacePublicService: EspacePublicService,
+      private router: Router) { }
 
   ngOnInit() {
 
@@ -92,6 +94,9 @@ export class AdhesionComponent implements OnInit {
   			}
   		}
   	)
+
+    this.router.navigateByUrl('/public/adhesion/confirmation');
+
   }
 
 
