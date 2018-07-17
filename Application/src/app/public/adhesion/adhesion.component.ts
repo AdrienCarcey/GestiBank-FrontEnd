@@ -24,46 +24,49 @@ export class AdhesionComponent implements OnInit {
   ngOnInit() {
 
   	  this.demandeInscriptionForm = new FormGroup ({
-		    nom: new FormControl('', Validators.required),
-		    prenom: new FormControl('', Validators.required),
-		    naissance: new FormControl('', Validators.required),
-		    numeroVoie: new FormControl('', Validators.required),
-		    libelleVoie: new FormControl('', Validators.required),
+		    nom: new FormControl(),
+		    prenom: new FormControl(),
+        titreCivilite: new FormControl(),
+		    naissance: new FormControl(),
+		    numeroVoie: new FormControl(),
+		    libelleVoie: new FormControl(),
 		    complementAdresse: new FormControl(),
-		    codePostal: new FormControl('', Validators.required),
-		    ville: new FormControl('', Validators.required),
-		    pays: new FormControl('', Validators.required),
-		    nombreEnfants: new FormControl('', Validators.required),
-		    entreeMensuelle: new FormControl(),
-		    nomUtilisateur: new FormControl('', Validators.required),
-		    mdp: new FormControl('', Validators.required),
-		    mdpConfirm: new FormControl('', Validators.required),
-		    civilite: new FormControl(),
+		    codePostal: new FormControl(),
+		    ville: new FormControl(),
+		    pays: new FormControl(),
+        email: new FormControl(),
+        telephone: new FormControl(),
 		    situationMatrimoniale: new FormControl(),
-		    typeCompte: new FormControl(),
-		    telephone: new FormControl(),
-		    email: new FormControl()
+        nombreEnfants: new FormControl(),
+        typeCompte: new FormControl(),
+        entreeMensuelle: new FormControl(),
+		    nomUtilisateur: new FormControl(),
+		    mdp: new FormControl(),
+		    mdpConfirm: new FormControl(),
 	}); 
   }
 
 
   createDemandeInscription(){
 
-	let demandeInscription = new DemandeInscription();
+	  let demandeInscription = new DemandeInscription();
 
   	demandeInscription.dateDemande = new Date();
+    demandeInscription.statut = "demande non traitee";
   	let client = new Client();
-  	client.idUtilisateur = this.demandeInscriptionForm.controls['nomUtilisateur'].value;
+    client.statut = "inscription";
+  	client.nomUtilisateur = this.demandeInscriptionForm.controls['nomUtilisateur'].value;
   	client.motDePasse = this.demandeInscriptionForm.controls['mdp'].value;
   	let identite = new Identite();
-  	client.identite.dateNaissance = this.demandeInscriptionForm.controls['naissance'].value;
-  	client.identite.nom = this.demandeInscriptionForm.controls['nom'].value;
-  	client.identite.prenom = this.demandeInscriptionForm.controls['prenom'].value;
-  	client.identite.titreCivilite = this.demandeInscriptionForm.controls['civilite'].value;
+    identite.titreCivilite = this.demandeInscriptionForm.controls['titreCivilite'].value;
+  	identite.nom = this.demandeInscriptionForm.controls['nom'].value;
+  	identite.prenom = this.demandeInscriptionForm.controls['prenom'].value;
+    identite.dateNaissance = this.demandeInscriptionForm.controls['naissance'].value;
   	client.identite = identite;
   	let contact = new Contact();
-  	let adresse = new Adresse();
-  	adresse.codePostal = this.demandeInscriptionForm.controls['codePostal'].value;
+    contact.email = this.demandeInscriptionForm.controls['email'].value;
+    contact.telephone = this.demandeInscriptionForm.controls['telephone'].value;
+    let adresse = new Adresse();
   	adresse.numeroVoie = this.demandeInscriptionForm.controls['numeroVoie'].value;
   	adresse.libelleVoie = this.demandeInscriptionForm.controls['libelleVoie'].value;
   	adresse.complementAdresse = this.demandeInscriptionForm.controls['complementAdresse'].value;
@@ -71,17 +74,15 @@ export class AdhesionComponent implements OnInit {
   	adresse.ville = this.demandeInscriptionForm.controls['ville'].value;
   	adresse.pays = this.demandeInscriptionForm.controls['pays'].value;
   	contact.adresse = adresse;
-  	contact.email = this.demandeInscriptionForm.controls['email'].value;
-  	contact.telephone = this.demandeInscriptionForm.controls['telephone'].value;
-  	demandeInscription.client.contact = contact;
-  	demandeInscription.client = client;
+  	client.contact = contact;
   	let situationFamiliale = new SituationFamiliale();
-  	situationFamiliale.nombreEnfants = this.demandeInscriptionForm.controls['nombreEnfants'].value,
-  	situationFamiliale.situationMatrimoniale = this.demandeInscriptionForm.controls['situationMatrimoniale'].value,
-  	demandeInscription.client.situationFamiliale = situationFamiliale;
+    situationFamiliale.situationMatrimoniale = this.demandeInscriptionForm.controls['situationMatrimoniale'].value,
+    situationFamiliale.nombreEnfants = this.demandeInscriptionForm.controls['nombreEnfants'].value,
+    client.situationFamiliale = situationFamiliale;
+    demandeInscription.client = client;
+  	
 
-
-  	this.espacePublicService.adhesion(demandeInscription).subscribe(
+  	this.espacePublicService.demandeInscription(demandeInscription).subscribe(
   		espacePublicResponse => {
   			console.log("Réponse reçue");
   			if (espacePublicResponse){

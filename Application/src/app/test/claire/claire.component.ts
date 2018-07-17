@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgControl } from '@angular/forms';
 
-import { ConnexionService } from '../../services/connexion.service'
+import { EspacePublicService } from '../../services/espace-public.service'
 import { SessionService } from '../../services/session.service';
 import { Session } from '../../modeles/session'
 
@@ -10,7 +10,7 @@ import { Session } from '../../modeles/session'
   selector: 'app-claire',
   templateUrl: './claire.component.html',
   styleUrls: ['./claire.component.css'],
-  providers: [ConnexionService, SessionService]
+  providers: [EspacePublicService, SessionService]
 })
 export class ClaireComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class ClaireComponent implements OnInit {
     mdp: new FormControl()
   });
 
-  constructor(private connexionService: ConnexionService, private sessionService: SessionService) { }
+  constructor(private espacePublicService:EspacePublicService, private sessionService: SessionService) { }
 
   ngOnInit() {
 
@@ -32,7 +32,7 @@ export class ClaireComponent implements OnInit {
     let mdp = this.connexionForm.controls['mdp'].value;
     let connexion = new Array<string>(utilisateur, mdp);
 
-  	this.connexionService.connexion(connexion).subscribe(
+  	this.espacePublicService.connexion(connexion).subscribe(
   		connexionResponse => {
         console.log("reponse recue");
   			this.reponse = connexionResponse;
