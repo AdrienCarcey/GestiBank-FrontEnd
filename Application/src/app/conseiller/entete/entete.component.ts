@@ -4,13 +4,19 @@ import { SessionService } from '../../services/session.service';
 @Component({
   selector: 'app-entete',
   templateUrl: './entete.component.html',
-  styleUrls: ['./entete.component.css']
+  styleUrls: ['./entete.component.css'],
+  providers: [SessionService]
 })
 export class EnteteComponent implements OnInit {
 
-  constructor() { }
+ nomUtilisateur : string;
+
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
+
+  	this.nomUtilisateur = this.sessionService.getSessionName();
+  
   }
 
 }

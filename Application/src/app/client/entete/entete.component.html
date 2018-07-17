@@ -26,10 +26,13 @@
         <a class="dropdown-item" href="./claire">Anglais</a>
       </div>
     </li>
+    
+    
+    <div>Bonjour {{nomUtilisateur}}</div>
 
     <i class="material-icons" style="font-size:40px;color:white;margin-left: 900px;">power_settings_new</i>
     <li class="nav-item">
-      <a class="nav-link" href="/public/deconnexion" (click)="deconnexion">Déconnexion</a>
+      <a class="nav-link" href="/public/deconnexion" (click)="sessionService.destroySession()">Déconnexion</a>
     </li>
   </ul>
 </nav>
