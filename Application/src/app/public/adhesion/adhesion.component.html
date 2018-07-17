@@ -14,224 +14,201 @@
   </li>
 </ul>
 
+
+
+
+
 <form class="form-group" [formGroup]="demandeInscriptionForm">
   <div class="tab-content">
     <div class="tab-pane active container" id="perso">
       
+      <div class="table-responsive">
 
-      <!-- Civilité -->
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Nom</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="nom">
-        </div>
+        <h3>Identité</h3>
+        <table class="table table-striped table-bordered table-sm">
+          <tr>
+            <th>Nom</th>
+            <th><input type="text" class="form-control" formControlName="nom"></th>
+          </tr>
+          <tr>
+            <th>Prénom</th>
+            <th><input type="text" class="form-control" formControlName="prenom"></th>
+          </tr>
+          <tr>
+            <th>Civilité</th>
+            <th>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input"  type="radio" name="titreCivilite" value="madame" checked formControlName="titreCivilite">
+              <label class="form-check-label" for="titreCivilite" name="titreCivilite">Madame</label>
+              </div>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="titreCivilite" value="monsieur" formControlName="titreCivilite">
+              <label class="form-check-label" for="titreCivilite" name="titreCivilite">Monsieur</label>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th>Date de naissance</th>
+            <th><input type="date" class="form-control" formControlName="naissance"></th>
+          </tr>
+        </table>
+
+        <!-- Adresse -->
+        <h3>Contact</h3>
+        <table class="table table-striped table-bordered table-sm">
+          <tr>
+            <th>Numéro de voie</th>
+            <th><input type="text" class="form-control" formControlName="numeroVoie"></th>
+          </tr>
+          <tr>
+            <th>Libellé de voie</th>
+            <th><input type="text" class="form-control" formControlName="libelleVoie"></th>
+          </tr>
+          <tr>
+            <th>Complément d'adresse</th>
+            <th><input type="text" class="form-control" formControlName="complementAdresse"></th>
+          </tr>
+          <tr>
+            <th>Code Postal</th>
+            <th><input type="text" class="form-control" formControlName="codePostal"></th>
+          </tr>          
+          <tr>
+            <th>Ville</th>
+            <th><input type="text" class="form-control" formControlName="ville"></th>
+          </tr>
+          <tr>
+            <th>Pays</th>
+            <th><input type="text" class="form-control" formControlName="pays"></th>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <th><input type="email" class="form-control" formControlName="email"></th>
+          </tr>
+          <tr>
+            <th>Numero de téléphone</th>
+            <th> <input type="text" class="form-control" formControlName="telephone"></th>
+          </tr>
+        </table>
+
+        <!-- Situation matrimoniale -->
+        <h3>Situation familiale</h3>
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm">
+          <tr>
+            <th>Situation matrimoniale</th>
+            <th>
+              <div class="form-check form-check-inline">
+                <input  class="form-check-input" type="radio" name="situationMatrimoniale" value="marie" formControlName="situationMatrimoniale">
+                <label class="form-check-label" for="situationMatrimoniale">Marié(e)</label>
+              </div>
+              <div class="form-check form-check-inline"> 
+                <input class="form-check-input" type="radio" name="situationMatrimoniale" value="celibataire" formControlName="situationMatrimoniale">
+                <label class="form-check-label" for="situationMatrimoniale">Célibataire</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="situationMatrimoniale" value="pacse" formControlName="situationMatrimoniale">
+                <label class="form-check-label" for="situationMatrimoniale">Pacsé</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="situationMatrimoniale" value="divorce" formControlName="situationMatrimoniale">
+                <label class="form-check-label" for="situationMatrimoniale">Divorcé(e)</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="situationMatrimoniale" value="veuf" formControlName="situationMatrimoniale">
+                <label class="form-check-label" for="situationMatrimoniale">Veuf(ve)</label>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th>Nombre d'enfant</th>
+            <th><input type="text" class="form-control" formControlName="nombreEnfants"></th>
+          </tr>
+        </table>
       </div>
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Prénom</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="prenom">
-        </div>
-      </div> 
-
-      <div class="row">
-        <label class="col-sm-3 col-form-label">Civilité</label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input"  type="radio" name="titreCivilite" value="madame"checked>
-          <label class="form-check-label" for="titreCivilite" name="titreCivilite">Madame</label>
-        </div>
-       <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="titreCivilite" value="monsieur">
-          <label class="form-check-label" for="titreCivilite" name="titreCivilite">Monsieur</label>
-        </div>
       </div>
-
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Date de naissance</label>
-        <div class="col-sm-10">
-          <input type="date" class="form-control" formControlName="naissance">
-        </div>
-      </div>
-
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" formControlName="email">
-        </div>
-      </div>
-
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Numero de téléphone</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="telephone">
-        </div>
-      </div>
-
-      <!-- Adresse -->
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Numéro de voie</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="numeroVoie">
-        </div>
-      </div>
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Libellé de voie</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="libelleVoie">
-        </div>
-      </div>
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Complément d'adresse</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="complementAdresse">
-        </div>
-      </div>
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Code postal</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="codePostal">
-        </div>
-      </div>
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Ville</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="ville">
-        </div>
-      </div>
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Pays</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="pays">
-        </div>
-      </div>  
-
-      <!-- Situation matrimoniale -->
-      <div class="row">
-        <label class="col-sm-3 col-form-label">Civilité</label>
-        <div class="form-check form-check-inline">
-          <input  class="form-check-input" type="radio" name="situationMatrimoniale" value="marie"checked>
-          <label class="form-check-label" for="situationMatrimoniale">Marié(e)</label>
-        </div>
-
-        <div class="form-check form-check-inline"> 
-          <input class="form-check-input" type="radio" name="situationMatrimoniale" value="celibataire">
-          <label class="form-check-label" for="situationMatrimoniale">Célibataire</label>
-        </div>
-
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="situationMatrimoniale" value="pacse">
-          <label class="form-check-label" for="situationMatrimoniale">Pacsé</label>
-        </div>
-
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="situationMatrimoniale" value="divorce">
-          <label class="form-check-label" for="situationMatrimoniale">Divorcé(e)</label>
-        </div>
-
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="situationMatrimoniale" value="veuf">
-          <label class="form-check-label" for="situationMatrimoniale">Veuf(ve)</label>
-        </div>
-      </div>
-
-
-
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Nombre d'enfant</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="nombreEnfants">
-        </div>
-      </div> 
-
-
-
-
     </div>
-    
-    <div class="tab-pane container" id="bancaire">
-      <label class="col-sm-3 col-form-label">Compte(s) demandés :</label>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="typeCompte" id="courantSansDecouvert" value="sansDecouvert" disabled checked>
-        <label class="form-check-label" for="courantSansDecouvert">Compte courant sans découvert</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="typeCompte" id="courantAvecDecouvert" value="avecDecouvert">
-        <label class="form-check-label" for="courantAvecDecouvert">Compte courant avec découvert</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" name="typeCompte" id="remunerateur" value="remunerateur">
-        <label class="form-check-label" for="remunerateur">Compte rémunérateur</label>
-      </div>
-
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Entrée mensuelle</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="entreeMensuelle">
-        </div>
-      </div> 
-   
       
-
+    <div class="tab-pane container" id="bancaire">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm">
+          <tr>
+            <th>Compte(s) demandés :</th>
+            <th>
+              <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="typeCompte" id="courantSansDecouvert" value="sansDecouvert" disabled checked formControlName="typeCompte">
+              <label class="form-check-label" for="courantSansDecouvert">Compte courant sans découvert</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="typeCompte" id="courantAvecDecouvert" value="avecDecouvert" formControlName="typeCompte">
+              <label class="form-check-label" for="courantAvecDecouvert">Compte courant avec découvert</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="typeCompte" id="remunerateur" value="remunerateur" formControlName="typeCompte">
+              <label class="form-check-label" for="remunerateur">Compte rémunérateur</label>
+            </div>
+            </th>      
+          </tr>
+          <tr>
+            <th>Entrée mensuelle</th>
+            <th> <input type="text" class="form-control" formControlName="entreeMensuelle"></th>
+          </tr>
+        </table>
+      </div>
     </div>
 
+
+    <!-- Configuration compte -->
       <div class="tab-pane container" id="compte">
-        <div class="row">
-        <label class="col-sm-2 col-form-label">Choississez un nom d'utilisateur</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="nomUtilisateur">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-sm">
+            <tr>
+              <th>Choississez un nom d'utilisateur</th>
+              <th><input type="text" class="form-control" formControlName="nomUtilisateur"></th>
+            </tr>
+            <tr>
+              <th>Choisissez un mot de passe</th>
+              <th><input type="password" class="form-control" formControlName="mdp"></th>
+            </tr>
+             <tr>
+              <th>Confirmez votre mot de passe</th>
+              <th><input type="password" class="form-control" formControlName="mdpConfirm"></th>
+            </tr>  
+          </table>
         </div>
-      </div> 
+      </div>
 
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Choisissez un mot de passe</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" formControlName="mdp">
-        </div>
-      </div>    
 
-      <div class="row">
-        <label class="col-sm-2 col-form-label">Confirmez votre mot de passe</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" formControlName="mdpConfirm">
-        </div>
-      </div>    
-
-    </div>
-
+    <!-- Documents à fournir -->
     <div class="tab-pane container" id="doc">
-      <div class="row">
-        <label class="col-sm-3 col-form-label">Carte d'identité</label>
-        <div class="col-sm-9">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="pieceIdentite" required>
-            <label class="custom-file-label" for="pieceIdentite">Choose file...</label>
-            <div class="invalid-feedback">Example invalid custom file feedback</div>
-          </div>
-        </div>
-      </div>  
-
-      <div class="row">
-        <label class="col-sm-3 col-form-label">Justificatif de domicile</label>
-        <div class="col-sm-9">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="JustificatifDomicile" required>
-            <label class="custom-file-label" for="JustificatifDomicile">Choose file...</label>
-            <div class="invalid-feedback">Example invalid custom file feedback</div>
-          </div>
-        </div>
-      </div>  
-
-
-
-
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm">
+          <tr>
+            <th>Carte d'identité</th>
+            <th class="custom-file">
+              <input type="file" class="custom-file-input" id="pieceIdentite">
+              <label class="custom-file-label" for="pieceIdentite">Choose file...</label>
+              <div class="invalid-feedback">Example invalid custom file feedback</div>
+            </th>
+          </tr>
+          <tr>
+            <th>Justificatif de domicile</th>
+            <th class="custom-file">
+                <input type="file" class="custom-file-input" id="justificatifDomicile">
+                <label class="custom-file-label" for="justificatifDomicile">Choose file...</label>
+                <div class="invalid-feedback">Example invalid custom file feedback</div>
+            </th>
+          </tr>
+        </table>
+      </div>
     </div>
 
+
+    <!-- Bouton de validation -->
     <div class="form-group row">
       <div class="col-sm-9">
         <button class="btn btn-primary" (click)="createDemandeInscription()">Valider</button>
       </div>
     </div>
-
-
 
 
   </div>
