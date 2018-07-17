@@ -27,7 +27,7 @@ export class AdrienComponent implements OnInit {
     createLastName: new FormControl(),
     createEmail: new FormControl(),
     createMobile: new FormControl()
-  })
+  });
 
   buttonModifierClient = {};
   buttonAnnulerClient = {};

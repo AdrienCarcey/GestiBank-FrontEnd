@@ -4,9 +4,7 @@ import { Observable } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 
 import { Client } from "../modeles/client";
-import { CompteCourantAvecDecouvert } from "../modeles/compte-courant-avec-decouvert";
-import { CompteCourantSansDecouvert } from "../modeles/compte-courant-sans-decouvert";
-import { CompteRemunerateur } from "../modeles/compte-remunerateur";
+import { Compte } from "../modeles/compte";
 
 @Injectable()
 export class EspaceConseillerService {
@@ -15,7 +13,7 @@ export class EspaceConseillerService {
 	constructor(private http: Http) {}
 
 	findAllClients(idConseiller: number): Observable<Array<Client>> {
-		return this.http.post(this.getEspaceConseillerUrl, idConseiller)
+		return this.http.get(this.getEspaceConseillerUrl+"/"+idConseiller)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
@@ -30,15 +28,31 @@ export class EspaceConseillerService {
 			);
 	}
 
-	closeClientAccount(idClient: number): Observable<Boolean> {
-		return this.http.delete(this.getEspaceConseillerUrl+"/clients/"+idClient)
+	openClientAccount(idClient: number): Observable<Boolean> {
+		return this.http.get(this.getEspaceConseillerUrl+"/client/"+idClient)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
 			);
 	}
 
-	openClientCompte(idCompte: number): Observable<Boolean> {
+	closeClientAccount(idClient: number): Observable<Boolean> {
+		return this.http.delete(this.getEspaceConseillerUrl+"/client/"+idClient)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	updateClientAccount(idClient: number, client: Client): Observable<Boolean> {
+		return this.http.put(this.getEspaceConseillerUrl+"/client/"+idClient, client)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	findClientCompte(idCompte: number): Observable<Compte> {
 		return this.http.get(this.getEspaceConseillerUrl+"/comptes/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
@@ -46,8 +60,16 @@ export class EspaceConseillerService {
 			);
 	}
 
+	openClientCompte(idCompte: number): Observable<Boolean> {
+		return this.http.get(this.getEspaceConseillerUrl+"/compte/"+idCompte)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
 	closeClientCompte(idCompte: number): Observable<Boolean> {
-		return this.http.delete(this.getEspaceConseillerUrl+"/comptes/"+idCompte)
+		return this.http.delete(this.getEspaceConseillerUrl+"/compte/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
