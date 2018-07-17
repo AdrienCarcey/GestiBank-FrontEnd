@@ -18,6 +18,10 @@ export class SessionService {
 		return JSON.parse(localStorage.getItem("session")).nomUtilisateur;
 	}
 
+	getSessionId(){
+		return JSON.parse(localStorage.getItem("session")).idUtilisateur;
+	}
+
 	destroySession(){
 		localStorage.removeItem("session");
 	}

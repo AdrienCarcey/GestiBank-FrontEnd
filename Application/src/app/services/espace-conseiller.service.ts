@@ -5,6 +5,7 @@ import { map, catchError } from "rxjs/operators";
 
 import { Client } from "../modeles/client";
 import { Compte } from "../modeles/compte";
+import { OperationBancaire } from "../modeles/operation-bancaire";
 
 @Injectable()
 export class EspaceConseillerService {
@@ -70,6 +71,14 @@ export class EspaceConseillerService {
 
 	closeClientCompte(idCompte: number): Observable<Boolean> {
 		return this.http.delete(this.getEspaceConseillerUrl+"/compte/"+idCompte)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	findCompteOperation(idCompte: number): Observable<Array<OperationBancaire>> {
+		return this.http.get(this.getEspaceConseillerUrl+"/operations/"+idCompte)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))

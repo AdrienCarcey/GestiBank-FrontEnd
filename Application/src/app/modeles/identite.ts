@@ -8,5 +8,5 @@ export class Identite {
 	dateNaissance: Date;
 
 	//Constructors
-	constructor(){}
+	constructor(){}	
 }
