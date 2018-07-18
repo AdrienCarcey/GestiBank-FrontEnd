@@ -128,24 +128,25 @@
       </div>
     </div>
       
+    <!-- Comptes bancaires -->      
     <div class="tab-pane container" id="bancaire">
       <div class="table-responsive">
         <table class="table table-striped table-bordered table-sm">
           <tr>
-            <th>Compte(s) demandés :</th>
+            <th>Compte(s) demandé(s)</th>
             <th>
               <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="typeCompte" id="courantSansDecouvert" value="sansDecouvert" formControlName="typeCompte">
-              <label class="form-check-label" for="courantSansDecouvert">Compte courant sans découvert</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="typeCompte" id="courantAvecDecouvert" value="avecDecouvert" formControlName="typeCompte">
-              <label class="form-check-label" for="courantAvecDecouvert">Compte courant avec découvert</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" name="typeCompte" id="remunerateur" value="remunerateur" formControlName="typeCompte">
-              <label class="form-check-label" for="remunerateur">Compte rémunérateur</label>
-            </div>
+                <input class="form-check-input" type="checkbox" name="typeCompte" id="courantSansDecouvert" value="sansDecouvert" formControlName="typeCompte" checked>
+                <label class="form-check-label" for="courantSansDecouvert">Compte courant sans découvert</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="typeCompte" id="courantAvecDecouvert" value="avecDecouvert" formControlName="typeCompte">
+                <label class="form-check-label" for="courantAvecDecouvert">Compte courant avec découvert</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="typeCompte" id="remunerateur" value="remunerateur" formControlName="typeCompte">
+                <label class="form-check-label" for="remunerateur">Compte rémunérateur</label>
+              </div>
             </th>      
           </tr>
           <tr>

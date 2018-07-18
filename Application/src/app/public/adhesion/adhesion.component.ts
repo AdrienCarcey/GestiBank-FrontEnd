@@ -82,7 +82,14 @@ export class AdhesionComponent implements OnInit {
     situationFamiliale.nombreEnfants = this.demandeInscriptionForm.controls['nombreEnfants'].value,
     client.situationFamiliale = situationFamiliale;
     demandeInscription.client = client;
-  	
+
+    let typeCompte = this.demandeInscriptionForm.controls['typeCompte'].value;
+    let entreeMensuelle = this.demandeInscriptionForm.controls['entreeMensuelle'].value;  	
+
+    let tableau = new Array<any>();
+    tableau[0] = demandeInscription;
+    tableau[1] = typeCompte;
+    tableau[2] = entreeMensuelle;
 
   	this.espacePublicService.demandeInscription(demandeInscription).subscribe(
   		espacePublicResponse => {

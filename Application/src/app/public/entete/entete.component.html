@@ -1,45 +1,35 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand d-flex flex-fill"><a class="nav-link" id="posBoutonGestiBank">Gestibank</a></span>
+    <div class="navbar-collapse collapse" id="navbar">
+        <ul class="navbar-nav justify-content-center d-flex flex-fill">
+            <i class="material-icons" href="#" style="font-size:40px; color:white;">home</i>
+            <li class="nav-item">
+                    <a class="nav-link" href="/public/informations">Accueil</a>
+            </li>
+           <i class="material-icons" style="font-size:40px; color:white;">mail_outline</i>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/contact/formulaire">Contact</a>
+            </li>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
+            <i class="material-icons {{connexion}}" style="font-size:40px; color:white;">input</i>
+            <li class="nav-item {{connexion}}">
+              <a class="nav-link {{connexion}}" href="/public/connexion">Connexion</a>
+            </li>
 
-    <li class="nav-item active">
-      <a class="nav-link" id="posBoutonGestiBank">Gestibank</a>
-    </li>
-
-    <i class="material-icons" href="#" style="font-size:40px; color:white;">home</i>
-    <li class="nav-item">
-            <a class="nav-link" href="/public/informations">Accueil</a>
-    </li>
-
-    <i class="material-icons" style="font-size:40px; color:white;">mail_outline</i>
-    <li class="nav-item">
-      <a class="nav-link" href="/public/contact/formulaire">Contact</a>
-    </li>
-
-    <i class="material-icons" style="font-size:40px; color:white;">language</i>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="./claire" id="navbardrop" data-toggle="dropdown">
-        Français
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item">Français</a>
-        <a class="dropdown-item">Anglais</a>
-      </div>
-    </li>
-
-    <i class="material-icons {{espace}}" style="font-size:40px; color:white; position:absolute; right:350px;">account_circle</i>
-    <li class="nav-item {{espace}}" style="position:absolute; right:200px;">
-      <a class="nav-link {{espace}}" href="{{espaceURL}}">Espace personnel</a>
-    </li>
-  
-    <i class="material-icons {{deconnexion}}" style="font-size:40px; color:white; position:absolute; right:130px;">power_settings_new</i>
-    <li class="nav-item {{deconnexion}}" style="position:absolute; right:10px;">
-      <a class="nav-link {{deconnexion}}" href="/public/deconnexion" (click)="sessionService.destroySession()">Déconnexion</a>
-    </li>
-
-    <i class="material-icons {{connexion}}" style="font-size:40px; color:white; position:absolute; right:130px;">input</i>
-    <li class="nav-item {{connexion}}" style="position:absolute; right:10px;">
-      <a class="nav-link {{connexion}}" href="/public/connexion">Connexion</a>
-    </li>
-  </ul>
+            <i class="material-icons {{espace}}" style="font-size:40px; color:white;">account_circle</i>
+            <li class="nav-item {{espace}}">
+              <a class="nav-link {{espace}}" href="{{espaceURL}}">Espace personnel</a>
+            </li>
+          
+            <i class="material-icons {{deconnexion}}" style="font-size:40px; color:white;">power_settings_new</i>
+            <li class="nav-item {{deconnexion}}">
+              <a class="nav-link {{deconnexion}}" href="/public/deconnexion" (click)="sessionService.destroySession()">Déconnexion</a>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex flex-fill"><!--spacer--> </div>
 </nav>
+

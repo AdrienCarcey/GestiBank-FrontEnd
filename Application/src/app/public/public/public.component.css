@@ -4,6 +4,7 @@
 /* Set gray background color and 100% height */
 .sidenav {
   background-color: #b7bab1;
+  min-height: 100vh;
   height: row.content;
 }
 
@@ -17,7 +18,7 @@
 
 /* Set black background color, white text and some padding */
 header {
-  height: 100px;
+  /*height: 100px;*/
   background-color: #343a40 ;
   color: white;
   padding: 15px;
