@@ -5,7 +5,8 @@
 		<tr>
 			<th>IdClient</th>
 			<th>Statut</th>
-			<th>Date d'ouverture du compte</th>
+			<th>Date d'ouverture</th>
+			<th>Date de fermeture</th>
 			<th>Nom</th>
 			<th>Prénom</th>
 			<th>Actions</th>
@@ -14,17 +15,20 @@
 			<td>{{c.idUtilisateur}}</td>
 			<td>{{c.statut}}</td>
 			<td>{{c.dateOuvertureCompte | date: 'dd/MM/yyyy'}}</td>
+			<td>{{c.dateFermetureCompte | date: 'dd/MM/yyyy'}}</td>
 			<td>{{c.identite.nom}}</td>
 			<td>{{c.identite.prenom}}</td>
 			<td>
-				<button class="btn btn-primary" (click)="findClientAccount(c.idUtilisateur)">Afficher</button>
-				<button class="btn btn-success" (click)="openClientAccount(c.idUtilisateur)">Ouvrir</button>
-				<button class="btn btn-danger" (click)="closeClientAccount(c.idUtilisateur)">Fermer</button>
+				<button class="btn btn-primary {{buttonAfficherClient[c.idUtilisateur]}}" (click)="findClientAccount(c.idUtilisateur)">Afficher</button>
+				<button class="btn btn-success {{buttonOuvrirClient[c.idUtilisateur]}}" (click)="openClientAccount(c.idUtilisateur)">Ouvrir</button>
+				<button class="btn btn-danger {{buttonFermerClient[c.idUtilisateur]}}" (click)="closeClientAccount(c.idUtilisateur)">Fermer</button>
 			</td>
 		</tr>
 	</table>
 </div>
 
+
+<div class="{{detailClient}}">
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#infoPersonnelles">Informations personnelles</a>
@@ -138,18 +142,19 @@
 				<th>Actions</th>
 			</tr>
 			<tr *ngFor="let c of client.comptes">
-				<td>{{c.idCompte}}</td>
-				<td>{{c.statut}}</td>
-				<td></td>
-				<td>{{c.solde}}</td>
+				<td>{{comptes[c.idCompte]['idCompte']}}</td>
+				<td>{{comptes[c.idCompte]['statut']}}</td>
+				<td>{{comptes[c.idCompte]['type']}}</td>
+				<td>{{comptes[c.idCompte]['solde']}}</td>
 				<td>
-					<button class="btn btn-primary" (click)="findCompteOperation(c.idCompte)" >Afficher</button>
-					<button class="btn btn-success" (click)="openClientCompte(c.idCompte)">Ouvrir</button>
-					<button class="btn btn-danger" (click)="closeClientCompte(c.idCompte)">Fermer</button>
+					<button class="btn btn-primary {{buttonAfficherCompte[c.idCompte]}}" (click)="findCompteOperation(c.idCompte)" >Afficher</button>
+					<button class="btn btn-success {{buttonOuvrirCompte[c.idCompte]}}" (click)="openClientCompte(c.idCompte)">Ouvrir</button>
+					<button class="btn btn-danger {{buttonFermerCompte[c.idCompte]}}" (click)="closeClientCompte(c.idCompte)">Fermer</button>
 				</td>
 			</tr>
 		</table>
 	</div>
+	<div class="{{detailCompte}}">
 	<h3>Opérations</h3>
   	<div class="table-responsive">
 		<table class="table table-striped table-bordered table-sm">
@@ -167,7 +172,9 @@
 			</tr>
 		</table>
 	</div>
+	</div>
   </div>
+</div>
 
 </div>
 

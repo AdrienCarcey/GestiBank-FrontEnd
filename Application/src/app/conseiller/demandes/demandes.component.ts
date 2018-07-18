@@ -26,14 +26,18 @@ import { SessionService } from "../../services/session.service";
 export class DemandesComponent implements OnInit {
 	idConseiller: number;
 
-	demandeInscription = new Array<DemandeInscription>();
-	demandeModificationDonnees = new Array<DemandeModificationDonnees>();
-	demandeChequier = new Array<DemandeChequier>();
-	demandeRib = new Array<DemandeRib>();
-	demandeOuvertureCompte = new Array<DemandeOuvertureCompte>();
-	demandeFermetureCompte = new Array<DemandeFermetureCompte>();
-	messageClient = new Array<MessageClient>();
-	messagePublic = new Array<MessagePublic>();
+	demandesInscription = new Array<DemandeInscription>();
+	demandesModificationDonnees = new Array<DemandeModificationDonnees>();
+	demandesChequier = new Array<DemandeChequier>();
+	demandesRib = new Array<DemandeRib>();
+	demandesOuvertureCompte = new Array<DemandeOuvertureCompte>();
+	demandesFermetureCompte = new Array<DemandeFermetureCompte>();
+	messagesClient = new Array<MessageClient>();
+	messagesPublic = new Array<MessagePublic>();
+
+	message = new Array<String>();
+
+	messageTable: String;
 
 	constructor(
       private espaceConseillerService: EspaceConseillerService,
@@ -43,16 +47,18 @@ export class DemandesComponent implements OnInit {
 	ngOnInit() {
 		this.idConseiller = this.sessionService.getSessionId();
 
+		this.messageTable = 'invisible';
+
 		this.espaceConseillerService.findAllDemandes(this.idConseiller).subscribe(
           demandesResponse => {
-            this.demandeInscription = demandesResponse['demandeInscription'];
-            this.demandeModificationDonnees = demandesResponse['demandeModificationDonnees'];
-            this.demandeChequier = demandesResponse['demandeChequier'];
-            this.demandeRib = demandesResponse['demandeRib'];
-            this.demandeOuvertureCompte = demandesResponse['demandeOuvertureCompte'];
-            this.demandeFermetureCompte = demandesResponse['demandeFermetureCompte'];
-            this.messageClient = demandesResponse['messageClient'];
-            this.messagePublic = demandesResponse['messagePublic'];
+            this.demandesInscription = demandesResponse['demandeInscription'];
+            this.demandesModificationDonnees = demandesResponse['demandeModificationDonnees'];
+            this.demandesChequier = demandesResponse['demandeChequier'];
+            this.demandesRib = demandesResponse['demandeRib'];
+            this.demandesOuvertureCompte = demandesResponse['demandeOuvertureCompte'];
+            this.demandesFermetureCompte = demandesResponse['demandeFermetureCompte'];
+            this.messagesClient = demandesResponse['messageClient'];
+            this.messagesPublic = demandesResponse['messagePublic'];
           },
           error => {
             console.log(error);
@@ -85,11 +91,34 @@ export class DemandesComponent implements OnInit {
 	}
 
 	afficherMessageClient(idDemande: number) {
-		
+		this.messageTable = 'visible';
+
+		for(let message of this.messagesClient) {
+			if(message.idDemande == idDemande) {
+				this.message['idClient'] = message.idClient;
+				this.message['titreCivilite'] = '-';
+				this.message['nom'] = '-';
+				this.message['prenom'] = '-';
+				this.message['email'] = '-';
+				this.message['sujet'] = message.sujet;
+				this.message['message'] = message.message;
+			}
+		}
 	}
 
 	afficherMessagePublic(idDemande: number) {
-		
-	}
+		this.messageTable = 'visible';
 
+		for(let message of this.messagesPublic) {
+			if(message.idDemande == idDemande) {
+				this.message['idClient'] = '-';
+				this.message['titreCivilite'] = message.titreCivilite;
+				this.message['nom'] = message.nom;
+				this.message['prenom'] = message.prenom;
+				this.message['email'] = message.email;
+				this.message['sujet'] = message.sujet;
+				this.message['message'] = message.message;
+			}
+		}
+	}
 }

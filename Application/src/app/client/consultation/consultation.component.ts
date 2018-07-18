@@ -28,8 +28,9 @@ export class ConsultationComponent implements OnInit {
 	operations = [{id:1, libelle:'crédit', montant:200, dateop:new Date(2017, 1, 11)},
 	              {id:2, libelle:'debit', montant:1500, dateop:new Date(2017, 12, 18)},
 				  {id:3, libelle:'debit', montant:100, dateop:new Date(2017, 12, 21)},
-				  {id:4, libelle:'crédit', montant:20, dateop:new Date(2017, 12, 31)}]
-*/	
+				  {id:4, libelle:'crédit', montant:20, dateop:new Date(2017, 12, 31)}];*/	
+	
+	public dateType ="AAAA-MM-JJ";
 	public dateDebut: Date;
 	public dateFin: Date;
 	public myForm: FormGroup;
@@ -41,7 +42,7 @@ export class ConsultationComponent implements OnInit {
 
 	constructor(private espaceClientService: EspaceClientService,
 				private sessionService: SessionService) { }
- //, private _fb: FormBuilder
+ 	//, private _fb: FormBuilder
 	  
 	ngOnInit() {
 
@@ -64,12 +65,29 @@ export class ConsultationComponent implements OnInit {
 
 	afficherCompte(){
 		let idCompte = this.myForm.controls["category"].value;
-		this.dateDebut = this.myForm.controls["dateDebut"].value;
-		this.dateFin = this.myForm.controls["dateFin"].value;
+		this.dateDebut = new Date(this.myForm.controls["dateDebut"].value);
+		this.dateFin = new Date(this.myForm.controls["dateFin"].value);
+
 		this.espaceClientService.findOperationsById(idCompte).subscribe(
 			operationsResponse => {
 				console.log("Liste Opérations Reçues");
-				this.operations = operationsResponse;
+				
+				if(this.myForm.controls["dateDebut"].value == null || this.myForm.controls["dateFin"].value == null) {
+					this.operations = operationsResponse;
+				}
+
+				else {
+					this.operations = new Array<OperationBancaire>();
+
+					for(let operation of operationsResponse) {
+						let date = new Date(operation.dateOperation);
+
+						if(date >= this.dateDebut && date <= this.dateFin) {
+							console.log("true");
+							this.operations.push(operation);
+						}
+					}
+				}
 			},
 			error => {
 				console.log(error);

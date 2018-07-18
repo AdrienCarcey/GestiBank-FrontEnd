@@ -28,6 +28,7 @@ export class ClientsComponent implements OnInit {
 
   clients = new Array<Client>();
   client = new Client();
+  comptes = new Array<Array<String>>();
   openClient: Boolean;
   closeClient: Boolean;
   updateClient: Boolean;
@@ -58,9 +59,19 @@ export class ClientsComponent implements OnInit {
     justificatifDomicile: new FormControl()
   });
 
-  buttonModifierClient: string;
-  buttonAnnulerClient: string;
-  buttonEnregistrerClient: string;
+
+  buttonAfficherClient = new Array<String>();
+  buttonOuvrirClient = new Array<String>();
+  buttonFermerClient = new Array<String>();
+  detailClient: String;
+  buttonModifierClient: String;
+  buttonAnnulerClient: String;
+  buttonEnregistrerClient: String;
+
+  buttonAfficherCompte = new Array<String>();
+  buttonOuvrirCompte = new Array<String>();
+  buttonFermerCompte = new Array<String>();
+  detailCompte: String;
 
 	constructor(
     private espaceConseillerService: EspaceConseillerService,
@@ -70,9 +81,26 @@ export class ClientsComponent implements OnInit {
 	ngOnInit() {
     this.idConseiller = this.sessionService.getSessionId();
 
+    this.detailClient = 'invisible';
+    this.detailCompte = 'invisible';
+
     this.espaceConseillerService.findAllClients(this.idConseiller).subscribe(
       clientsResponse => {
         this.clients = clientsResponse;
+
+        for(let client of this.clients) {
+          if(client.statut == "ouvert") {
+            this.buttonAfficherClient[client.idUtilisateur] = 'visible';
+            this.buttonOuvrirClient[client.idUtilisateur] = 'invisible';
+            this.buttonFermerClient[client.idUtilisateur] = 'visible';
+          }
+          
+          else {
+            this.buttonAfficherClient[client.idUtilisateur] = 'invisible';
+            this.buttonOuvrirClient[client.idUtilisateur] = 'visible';
+            this.buttonFermerClient[client.idUtilisateur] = 'invisible';
+          }
+        }
       },
       error => {
         console.log(error);
@@ -87,12 +115,59 @@ export class ClientsComponent implements OnInit {
     this.buttonAnnulerClient = 'invisible';
     this.buttonEnregistrerClient = 'invisible';
 
+    this.detailClient = 'visible';
+
     this.espaceConseillerService.findClientAccount(idClient).subscribe(
       clientResponse => {
         this.client = clientResponse;
+
+        for(let compte of this.client.comptes) {
+          if(compte.statut) {
+            this.buttonAfficherCompte[compte.idCompte] = 'visible';
+            this.buttonOuvrirCompte[compte.idCompte] = 'invisible';
+            this.buttonFermerCompte[compte.idCompte] = 'visible';
+          }
+          
+          else {
+            this.buttonAfficherCompte[compte.idCompte] = 'invisible';
+            this.buttonOuvrirCompte[compte.idCompte] = 'visible';
+            this.buttonFermerCompte[compte.idCompte] = 'invisible';
+          }
+        }
+
+        let i = 0;
+
+        for(let compte of this.client.comptes) {
+          let comptetmp = new Array<String>();
+
+          comptetmp['idCompte'] = compte.idCompte;
+          
+          if(compte.statut) {
+            comptetmp['statut'] = 'ouvert';
+            comptetmp['solde'] = compte.solde;
+          }
+          else {
+            comptetmp['statut'] = 'fermé';
+            comptetmp['solde'] = '-';
+          }
+
+          if(i == 0){
+            comptetmp['type'] = 'Compte Courant Sans Découvert';
+          }
+          else if(i == 1){
+            comptetmp['type'] = 'Compte Courant Avec Découvert';
+          }
+          else if(i == 2){
+            comptetmp['type'] = 'Compte Rémunérateur';
+          }
+
+          this.comptes[compte.idCompte] = comptetmp;
+
+          i++;
+        }
       },
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -185,6 +260,8 @@ export class ClientsComponent implements OnInit {
   }
   
   findCompteOperation(idCompte: number) {
+    this.detailCompte = 'visible';
+
     this.espaceConseillerService.findCompteOperation(idCompte).subscribe(
       operationResponse => {
          this.operationsBancaires = operationResponse;

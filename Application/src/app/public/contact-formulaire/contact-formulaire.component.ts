@@ -40,7 +40,7 @@ export class ContactFormulaireComponent implements OnInit {
   		message.email = this.messageForm.controls["email"].value;
   		message.message = this.messageForm.controls["message"].value;
     		message.sujet = this.messageForm.controls["sujet"].value;
-    		message.statut = "demande non traitee";
+    		message.statut = "message non repondu";
     		message.dateDemande = new Date();
     		
   	  	this.espacePublicService.createMessagePublic(message).subscribe(

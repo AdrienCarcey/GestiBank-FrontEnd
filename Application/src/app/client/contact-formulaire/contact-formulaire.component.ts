@@ -33,7 +33,7 @@ export class ContactFormulaireComponent implements OnInit {
   		let message = new MessageClient();
   		message.message = this.messageForm.controls["message"].value;
     	message.sujet = this.messageForm.controls["sujet"].value;
-    	message.statut = "demande non traitee";
+    	message.statut = "message non repondu";
     	message.dateDemande = new Date();
     	let idClient: number;
     	idClient = this.sessionService.getSessionId();
