@@ -7,6 +7,8 @@ import { OperationBancaire } from "../modeles/operation-bancaire";
 import { Compte } from "../modeles/compte";
 import { MessageClient } from '../modeles/message-client';
 import { Client } from '../modeles/client';
+import { DemandeChequier } from '../modeles/demande-chequier';
+import { DemandeRib } from '../modeles/demande-rib';
 
 @Injectable()
 export class EspaceClientService {
@@ -34,6 +36,22 @@ export class EspaceClientService {
 
 	createMessageClient(messageClient: MessageClient): Observable<Boolean>{
 		return this.http.post(this.getEspaceClientUrl + "/message", messageClient)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			)
+	}
+
+	createDemandeChequier(demandeChequier: DemandeChequier, idClient: number): Observable<Boolean>{
+		return this.http.post(this.getEspaceClientUrl + "/demandechequier/" + idClient, demandeChequier)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			)
+	}
+
+	createDemandeRib(demandeRib: DemandeRib, idClient: number): Observable<Boolean>{
+		return this.http.post(this.getEspaceClientUrl + "/demanderib/" + idClient, demandeRib)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
