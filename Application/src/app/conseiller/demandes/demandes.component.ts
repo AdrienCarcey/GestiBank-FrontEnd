@@ -36,8 +36,10 @@ export class DemandesComponent implements OnInit {
 	messagesPublic = new Array<MessagePublic>();
 
 	message = new Array<String>();
-
 	messageTable: String;
+	messageRepondre: String;
+
+	validate: Boolean;
 
 	constructor(
       private espaceConseillerService: EspaceConseillerService,
@@ -95,6 +97,7 @@ export class DemandesComponent implements OnInit {
 
 		for(let message of this.messagesClient) {
 			if(message.idDemande == idDemande) {
+				this.message['idDemande'] = message.idDemande;
 				this.message['idClient'] = message.idClient;
 				this.message['titreCivilite'] = '-';
 				this.message['nom'] = '-';
@@ -102,6 +105,13 @@ export class DemandesComponent implements OnInit {
 				this.message['email'] = '-';
 				this.message['sujet'] = message.sujet;
 				this.message['message'] = message.message;
+
+				if(message.statut == "message non repondu") {
+					this.messageRepondre = 'visible';
+				}
+				else {
+					this.messageRepondre = 'invisible';
+				}		
 			}
 		}
 	}
@@ -111,6 +121,7 @@ export class DemandesComponent implements OnInit {
 
 		for(let message of this.messagesPublic) {
 			if(message.idDemande == idDemande) {
+				this.message['idDemande'] = message.idDemande;
 				this.message['idClient'] = '-';
 				this.message['titreCivilite'] = message.titreCivilite;
 				this.message['nom'] = message.nom;
@@ -119,6 +130,26 @@ export class DemandesComponent implements OnInit {
 				this.message['sujet'] = message.sujet;
 				this.message['message'] = message.message;
 			}
+
+			if(message.statut == "message non repondu") {
+					this.messageRepondre = 'visible';
+				}
+			else {
+				this.messageRepondre = 'invisible';
+			}
 		}
+	}
+
+	accepterDemande(idDemande: number) {
+		this.espaceConseillerService.validateDemande(idDemande, this.idConseiller).subscribe(
+          validateResponse => {
+            this.validate = validateResponse; 
+          },
+          error => {
+            console.log(error);
+          }
+        );
+
+        window.location.reload();
 	}
 }

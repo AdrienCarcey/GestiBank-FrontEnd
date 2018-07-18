@@ -27,9 +27,19 @@
       </div>
     </li>
 
-    <i class="material-icons" style="font-size:40px; color:white; position:absolute; right:130px;">input</i>
-    <li class="nav-item" style="position:absolute; right:10px;">
-      <a class="nav-link" href="/public/connexion">Connexion</a>
+    <i class="material-icons {{espace}}" style="font-size:40px; color:white; position:absolute; right:350px;">account_circle</i>
+    <li class="nav-item {{espace}}" style="position:absolute; right:200px;">
+      <a class="nav-link {{espace}}" href="{{espaceURL}}">Espace personnel</a>
+    </li>
+  
+    <i class="material-icons {{deconnexion}}" style="font-size:40px; color:white; position:absolute; right:130px;">power_settings_new</i>
+    <li class="nav-item {{deconnexion}}" style="position:absolute; right:10px;">
+      <a class="nav-link {{deconnexion}}" href="/public/deconnexion" (click)="sessionService.destroySession()">Déconnexion</a>
+    </li>
+
+    <i class="material-icons {{connexion}}" style="font-size:40px; color:white; position:absolute; right:130px;">input</i>
+    <li class="nav-item {{connexion}}" style="position:absolute; right:10px;">
+      <a class="nav-link {{connexion}}" href="/public/connexion">Connexion</a>
     </li>
   </ul>
 </nav>

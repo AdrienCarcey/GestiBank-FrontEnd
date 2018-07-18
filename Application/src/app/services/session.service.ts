@@ -30,6 +30,10 @@ export class SessionService {
 		return JSON.parse(localStorage.getItem("session")).idUtilisateur;
 	}
 
+	getSessionType(){
+		return JSON.parse(localStorage.getItem("session")).typeUtilisateur;
+	}
+
 	destroySession(){
 		localStorage.removeItem("session");
 	}
