@@ -5,24 +5,25 @@
 		    <a class="nav-link active" data-toggle="tab" href="#nouveauCompte">Nouveau Compte</a>
 		</li>
 		<li class="nav-item">
-		    <a class="nav-link" data-toggle="tab" href="#chequier">Demande Chéquier</a>
+		    <a class="nav-link" data-toggle="tab" href="#chequierrib">Demande Chéquier/ RIB</a>
 		</li>
-		<li class="nav-item">
-		    <a class="nav-link" data-toggle="tab" href="#rib">Imprimer RIB</a>
-		</li>  
 	</ul>
 
 	<div class="tab-content">
 
 		<div class="tab-pane active container" id="nouveauCompte"></div>
 		  	
-		<div class="tab-pane container" id="chequier">
+		<div class="tab-pane container" id="chequierrib">
 
 			<table>
 		        <tr>
 		          	<th>Demander un nouveau chéquier</th>
 		          	<th><button class="btn btn-primary" (click)="createDemandeChequier()">Demande</button></th>
 		        </tr>
+		        <tr>
+		          	<th>Demander un RIB</th>
+		          	<th><button class="btn btn-primary" (click)="createDemandeRib()">Demande</button></th>
+		        </tr>		        
       		</table>
 
 		</div>
