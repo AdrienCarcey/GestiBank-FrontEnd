@@ -37,6 +37,8 @@ export class DemandesComponent implements OnInit {
 	messagesClient = new Array<MessageClient>();
 	messagesPublic = new Array<MessagePublic>();
 
+	clientInscription = new Client();
+	demandeInscription: number;
 	demandeInscriptionTable: String;
 	demandeInscriptionAccepter: String;
 	demandeInscriptionRefuser: String;
@@ -89,7 +91,7 @@ export class DemandesComponent implements OnInit {
 	            }
             }     
 
-            this.demandesRib = demandesResponse['demandeRib'];
+            this.demandesRib = demandesResponse['demandeRIB'];
 
             if(this.demandesRib != null) {
             	for(let demande of this.demandesRib) {
@@ -139,9 +141,11 @@ export class DemandesComponent implements OnInit {
 
 	afficherDemandeInscription(idDemande: number) {
 		this.demandeInscriptionTable = 'visible';
+		this.demandeInscription = idDemande;
 
 		for(let demande of this.demandesInscription) {
 			if(demande.idDemande == idDemande) {
+				this.clientInscription = demande.client;
 
 				if(demande.statut == "demande non traitee") {
 					this.demandeInscriptionAccepter = 'visible';

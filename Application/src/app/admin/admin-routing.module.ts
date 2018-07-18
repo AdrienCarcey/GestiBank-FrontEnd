@@ -4,11 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConseillersComponent } from './conseillers/conseillers.component';
-import { ConseillersConsultationComponent } from './conseillers-consultation/conseillers-consultation.component';
-import { ConseillersModificationComponent } from './conseillers-modification/conseillers-modification.component';
-import { ConseillersAjoutComponent } from './conseillers-ajout/conseillers-ajout.component';
-import { AffectationsAdhesionComponent } from './affectations-adhesion/affectations-adhesion.component';
-import { AffectationsClientComponent } from './affectations-client/affectations-client.component';
+import { AffectationsComponent } from './affectations/affectations.component';
 
 const routes: Routes = [
 	{
@@ -24,24 +20,8 @@ const routes: Routes = [
 				component: ConseillersComponent
 			},
 			{
-				path: 'conseillers/consultation',
-				component: ConseillersConsultationComponent
-			},
-			{
-				path: 'conseillers/modification',
-				component: ConseillersModificationComponent
-			},
-			{
-				path: 'conseillers/ajout',
-				component: ConseillersAjoutComponent
-			},
-			{
-				path: 'affectations/adhesion',
-				component: AffectationsAdhesionComponent
-			},
-			{
-				path: 'affectations/client',
-				component: AffectationsClientComponent
+				path: 'affectations',
+				component: AffectationsComponent
 			}
 		]
 	}

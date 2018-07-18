@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
@@ -8,15 +9,13 @@ import { EnteteComponent } from './entete/entete.component';
 import { NavigateurComponent } from './navigateur/navigateur.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConseillersComponent } from './conseillers/conseillers.component';
-import { ConseillersConsultationComponent } from './conseillers-consultation/conseillers-consultation.component';
-import { ConseillersModificationComponent } from './conseillers-modification/conseillers-modification.component';
-import { ConseillersAjoutComponent } from './conseillers-ajout/conseillers-ajout.component';
-import { AffectationsAdhesionComponent } from './affectations-adhesion/affectations-adhesion.component';
-import { AffectationsClientComponent } from './affectations-client/affectations-client.component';
+import { AffectationsComponent } from './affectations/affectations.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AdminRoutingModule
   ],
   declarations: [
@@ -25,11 +24,7 @@ import { AffectationsClientComponent } from './affectations-client/affectations-
   	NavigateurComponent,
   	DashboardComponent,
   	ConseillersComponent,
-  	ConseillersConsultationComponent,
-  	ConseillersModificationComponent,
-  	ConseillersAjoutComponent,
-  	AffectationsAdhesionComponent,
-  	AffectationsClientComponent
+  	AffectationsComponent
   ]
 })
 export class AdminModule { }
