@@ -22,6 +22,14 @@ export class EspaceConseillerService {
 			);
 	}
 
+	findClientByName(nomUtilisateur: String): Observable<Client> {
+		return this.http.post(this.getEspaceConseillerUrl, nomUtilisateur)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
 	findClientAccount(idClient: number): Observable<Client> {
 		return this.http.get(this.getEspaceConseillerUrl+"/clients/"+idClient)
 			.pipe(
@@ -94,8 +102,16 @@ export class EspaceConseillerService {
 			);
 	}
 
-	validateDemande(idDemande: number, idConseiller: number): Observable<Boolean> {
+	validateDemande(idDemande: number, idConseiller: String): Observable<Boolean> {
 		return this.http.post(this.getEspaceConseillerUrl+"/demandes/"+idDemande, idConseiller)
+			.pipe(
+				map((res:Response) => res.json()),
+				catchError((error:any) => Observable.throw(error.json().error || "Server error"))
+			);
+	}
+
+	refuseDemande(idDemande: number): Observable<Boolean> {
+		return this.http.delete(this.getEspaceConseillerUrl+"/demandes/"+idDemande)
 			.pipe(
 				map((res:Response) => res.json()),
 				catchError((error:any) => Observable.throw(error.json().error || "Server error"))

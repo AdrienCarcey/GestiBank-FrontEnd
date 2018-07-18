@@ -167,7 +167,7 @@ export class ClientsComponent implements OnInit {
         }
       },
       error => {
-        
+        console.log(error);
       }
     );
   }

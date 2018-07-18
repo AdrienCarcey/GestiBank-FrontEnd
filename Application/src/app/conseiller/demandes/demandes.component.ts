@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Client } from "../../modeles/client";
+
 import { DemandeInscription } from "../../modeles/demande-inscription";
 import { DemandeModificationDonnees } from "../../modeles/demande-modification-donnees";
 import { DemandeChequier } from "../../modeles/demande-chequier";
@@ -35,11 +37,27 @@ export class DemandesComponent implements OnInit {
 	messagesClient = new Array<MessageClient>();
 	messagesPublic = new Array<MessagePublic>();
 
+	demandeInscriptionTable: String;
+	demandeInscriptionAccepter: String;
+	demandeInscriptionRefuser: String;
+
+	clientBefore = new Client();
+	clientAfter = new Client();
+	demandeClient: number;
+	demandeClientBefore = new Array<String>();
+	demandeClientAfter = new Array<String>();
+	demandeClientTable: String;
+	demandeClientAccepter: String;
+	demandeClientRefuser: String;
+
+	demandeAccepterRefuser = new Array<String>();
+
 	message = new Array<String>();
 	messageTable: String;
 	messageRepondre: String;
 
 	validate: Boolean;
+	refuse: Boolean;
 
 	constructor(
       private espaceConseillerService: EspaceConseillerService,
@@ -49,16 +67,67 @@ export class DemandesComponent implements OnInit {
 	ngOnInit() {
 		this.idConseiller = this.sessionService.getSessionId();
 
+		this.demandeInscriptionTable = 'invisible';
+		this.demandeClientTable = 'invisible';
 		this.messageTable = 'invisible';
 
 		this.espaceConseillerService.findAllDemandes(this.idConseiller).subscribe(
           demandesResponse => {
             this.demandesInscription = demandesResponse['demandeInscription'];
             this.demandesModificationDonnees = demandesResponse['demandeModificationDonnees'];
+            
             this.demandesChequier = demandesResponse['demandeChequier'];
+
+            if(this.demandesChequier != null) {
+            	for(let demande of this.demandesChequier) {
+	            	if(demande.statut == "demande non traitee") {
+	            		this.demandeAccepterRefuser[demande.idDemande] = 'visible';
+	            	}
+	            	else {
+	            		this.demandeAccepterRefuser[demande.idDemande]  = 'invisible';
+	            	} 	
+	            }
+            }     
+
             this.demandesRib = demandesResponse['demandeRib'];
+
+            if(this.demandesRib != null) {
+            	for(let demande of this.demandesRib) {
+	            	if(demande.statut == "demande non traitee") {
+	            		this.demandeAccepterRefuser[demande.idDemande] = 'visible';
+	            	}
+	            	else {
+	            		this.demandeAccepterRefuser[demande.idDemande]  = 'invisible';
+	            	} 	
+            	}
+            }
+
             this.demandesOuvertureCompte = demandesResponse['demandeOuvertureCompte'];
+
+            if(this.demandesOuvertureCompte != null) {
+            	for(let demande of this.demandesOuvertureCompte) {
+	            	if(demande.statut == "demande non traitee") {
+	            		this.demandeAccepterRefuser[demande.idDemande] = 'visible';
+	            	}
+	            	else {
+	            		this.demandeAccepterRefuser[demande.idDemande]  = 'invisible';
+	            	} 	
+	            }
+            }
+
             this.demandesFermetureCompte = demandesResponse['demandeFermetureCompte'];
+
+            if(this.demandesFermetureCompte != null) {
+            	for(let demande of this.demandesFermetureCompte) {
+	            	if(demande.statut == "demande non traitee") {
+	            		this.demandeAccepterRefuser[demande.idDemande] = 'visible';
+	            	}
+	            	else {
+	            		this.demandeAccepterRefuser[demande.idDemande]  = 'invisible';
+	            	} 	
+	            }
+            }
+
             this.messagesClient = demandesResponse['messageClient'];
             this.messagesPublic = demandesResponse['messagePublic'];
           },
@@ -69,27 +138,50 @@ export class DemandesComponent implements OnInit {
 	}
 
 	afficherDemandeInscription(idDemande: number) {
+		this.demandeInscriptionTable = 'visible';
 
+		for(let demande of this.demandesInscription) {
+			if(demande.idDemande == idDemande) {
+
+				if(demande.statut == "demande non traitee") {
+					this.demandeInscriptionAccepter = 'visible';
+					this.demandeInscriptionRefuser = 'visible';
+				}
+				else {
+					this.demandeInscriptionAccepter = 'invisible';
+					this.demandeInscriptionRefuser = 'invisible';
+				}		
+			}
+		}
 	}
 
-	afficherDemandeModificationDonnee(idDemande: number) {
-		
-	}
+	afficherDemandeModificationDonnees(idDemande: number) {
+		this.demandeClientTable = 'visible';
+		this.demandeClient = idDemande;
 
-	afficherDemandeChequier(idDemande: number) {
-		
-	}
+		for(let demande of this.demandesModificationDonnees) {
+			if(demande.idDemande == idDemande) {
+				this.clientAfter = demande.client;
 
-	afficherDemandeRib(idDemande: number) {
-		
-	}
+				this.espaceConseillerService.findClientByName(this.clientAfter.nomUtilisateur).subscribe(
+			      clientResponse => {
+			        this.clientBefore = clientResponse;
+			      }, 
+			      error => {
+			        console.log(error);
+			      }
+			    );
 
-	afficherDemandeOuvertureCompte(idDemande: number) {
-		
-	}
-
-	afficherdemandeFermetureCompte(idDemande: number) {
-		
+				if(demande.statut == "demande non traitee") {
+					this.demandeClientAccepter = 'visible';
+					this.demandeClientRefuser = 'visible';
+				}
+				else {
+					this.demandeClientAccepter = 'invisible';
+					this.demandeClientRefuser = 'invisible';
+				}		
+			}
+		}
 	}
 
 	afficherMessageClient(idDemande: number) {
@@ -141,9 +233,22 @@ export class DemandesComponent implements OnInit {
 	}
 
 	accepterDemande(idDemande: number) {
-		this.espaceConseillerService.validateDemande(idDemande, this.idConseiller).subscribe(
+		this.espaceConseillerService.validateDemande(idDemande, String(this.idConseiller)).subscribe(
           validateResponse => {
             this.validate = validateResponse; 
+          },
+          error => {
+            console.log(error);
+          }
+        );
+
+        window.location.reload();
+	}
+
+	refuserDemande(idDemande: number) {
+		this.espaceConseillerService.refuseDemande(idDemande).subscribe(
+          refuseResponse => {
+            this.refuse = refuseResponse; 
           },
           error => {
             console.log(error);
