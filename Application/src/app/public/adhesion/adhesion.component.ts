@@ -40,8 +40,8 @@ export class AdhesionComponent implements OnInit {
         telephone: new FormControl(),
 		    situationMatrimoniale: new FormControl(),
         nombreEnfants: new FormControl(),
-        typeCompte: new FormControl(),
-        entreeMensuelle: new FormControl(),
+        //typeCompte: new FormControl(),
+        //entreeMensuelle: new FormControl(),
 		    nomUtilisateur: new FormControl(),
 		    mdp: new FormControl(),
 		    mdpConfirm: new FormControl(),
@@ -54,20 +54,24 @@ export class AdhesionComponent implements OnInit {
 	  let demandeInscription = new DemandeInscription();
 
   	demandeInscription.dateDemande = new Date();
-    demandeInscription.statut = "demande non traitee";
-  	let client = new Client();
+    demandeInscription.statut = "demande non affectee";
+  	
+    let client = new Client();
     client.statut = "inscription";
   	client.nomUtilisateur = this.demandeInscriptionForm.controls['nomUtilisateur'].value;
   	client.motDePasse = this.demandeInscriptionForm.controls['mdp'].value;
-  	let identite = new Identite();
+  	
+    let identite = new Identite();
     identite.titreCivilite = this.demandeInscriptionForm.controls['titreCivilite'].value;
   	identite.nom = this.demandeInscriptionForm.controls['nom'].value;
   	identite.prenom = this.demandeInscriptionForm.controls['prenom'].value;
     identite.dateNaissance = this.demandeInscriptionForm.controls['naissance'].value;
   	client.identite = identite;
-  	let contact = new Contact();
+  	
+    let contact = new Contact();
     contact.email = this.demandeInscriptionForm.controls['email'].value;
     contact.telephone = this.demandeInscriptionForm.controls['telephone'].value;
+    
     let adresse = new Adresse();
   	adresse.numeroVoie = this.demandeInscriptionForm.controls['numeroVoie'].value;
   	adresse.libelleVoie = this.demandeInscriptionForm.controls['libelleVoie'].value;
@@ -77,19 +81,21 @@ export class AdhesionComponent implements OnInit {
   	adresse.pays = this.demandeInscriptionForm.controls['pays'].value;
   	contact.adresse = adresse;
   	client.contact = contact;
-  	let situationFamiliale = new SituationFamiliale();
+  	
+    let situationFamiliale = new SituationFamiliale();
     situationFamiliale.situationMatrimoniale = this.demandeInscriptionForm.controls['situationMatrimoniale'].value,
     situationFamiliale.nombreEnfants = this.demandeInscriptionForm.controls['nombreEnfants'].value,
     client.situationFamiliale = situationFamiliale;
+    
     demandeInscription.client = client;
 
-    let typeCompte = this.demandeInscriptionForm.controls['typeCompte'].value;
+    /*let typeCompte = this.demandeInscriptionForm.controls['typeCompte'].value;
     let entreeMensuelle = this.demandeInscriptionForm.controls['entreeMensuelle'].value;  	
 
     let tableau = new Array<any>();
     tableau[0] = demandeInscription;
     tableau[1] = typeCompte;
-    tableau[2] = entreeMensuelle;
+    tableau[2] = entreeMensuelle;*/
 
   	this.espacePublicService.demandeInscription(demandeInscription).subscribe(
   		espacePublicResponse => {
