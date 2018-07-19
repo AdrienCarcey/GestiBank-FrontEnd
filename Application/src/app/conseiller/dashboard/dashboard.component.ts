@@ -27,12 +27,12 @@ export class DashboardComponent implements OnInit {
 	  this.idConseiller = this.sessionService.getSessionId();
 
 	  this.espaceConseillerService.dashboard(this.idConseiller).subscribe(
-          dashboardResponse => {
-            this.dashboard = dashboardResponse;
-          },
-          error => {
-            console.log(error);
-          }
-        );
+      dashboardResponse => {
+        this.dashboard = dashboardResponse;
+        },
+        error => {
+          console.log(error);
+        }
+    );
 	}
 }

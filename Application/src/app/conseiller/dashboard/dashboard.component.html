@@ -1,7 +1,22 @@
-<div class="container">
+<p style="text-align: center;">
+	Bonjour {{dashboard['prenom']}} {{dashboard['nom']}}
+</p>
 
-	<p>Bonjour {{dashboard['prenom']}} {{dashboard['nom']}}.</p>
-	<p>Vous gérez actuellement {{dashboard['nombreClients']}} clients.</p>
-	<p>Vous avez {{dashboard['nombreDemandes']}} demandes en attente.</p>
-
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-sm">
+		<tr>
+			<th>Nombre de clients</th>
+			<td>{{dashboard['nombreClients']}}</td>
+			<td>
+				<button class="btn btn-primary" onclick="window.location.href='/conseiller/clients'">Afficher</button>
+			</td>
+		</tr>
+		<tr>
+			<th>Nombre de demandes</th>
+			<td>{{dashboard['nombreDemandes']}}</td>
+			<td>
+				<button class="btn btn-primary" onclick="window.location.href='/conseiller/demandes'">Afficher</button>
+			</td>
+		</tr>
+	</table>
 </div>

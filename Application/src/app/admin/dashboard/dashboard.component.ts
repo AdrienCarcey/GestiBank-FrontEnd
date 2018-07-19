@@ -1,22 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EspaceAdminService } from "../../services/espace-admin.service";
 import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [SessionService]
+  providers: [
+    EspaceAdminService,
+    SessionService
+  ]
 })
 export class DashboardComponent implements OnInit {
 
-  	nom: string;
-	prenom: string;
+  	idAdmin: number;
 
-	constructor(private sessionService: SessionService) { }
+    dashboard = new Array<String>();
+
+    constructor(
+      private espaceAdminService: EspaceAdminService,
+      private sessionService: SessionService
+    ) { }
 
   	ngOnInit() {
-  		this.nom = this.sessionService.getSessionNom();
-  		this.prenom = this.sessionService.getSessionPrenom();
+  		this.idAdmin = this.sessionService.getSessionId();
+
+      this.espaceAdminService.dashboard(this.idAdmin).subscribe(
+        dashboardResponse => {
+          this.dashboard = dashboardResponse;
+          },
+           error => {
+            console.log(error);
+          }
+      );
   	}
 }
